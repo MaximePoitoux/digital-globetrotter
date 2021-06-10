@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Header from "components/Header/Header";
+// import Header from "components/Header/Header";
 import CityCards from "components/CityCards";
 import apiCities from "services/api/api.cities";
 export default class App extends Component {
@@ -16,11 +16,12 @@ export default class App extends Component {
     apiCities
       .get()
       .then((res) => res.data._embedded["ua:item"])
-      .then((cities) => this.updateCities(this.filterCitiesbyScore(cities)))
+      .then((cities) => this.updateCities(this.sortCitiesByScore(cities)))
       .catch((err) => console.log(err));
   }
 
-  filterCitiesbyScore = (cities) => {
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales
+  sortCitiesByScore = (cities) => {
     const sortByMapped = (map, compareFn) => (a, b) =>
       compareFn(map(a), map(b));
     const byValue = (a, b) => b - a;
@@ -29,38 +30,18 @@ export default class App extends Component {
     return [...cities].sort(byScore);
   };
 
+  // Méthode qui permet de modifier le state initial
   updateCities = (cities) => {
     this.setState({
       cities,
     });
   };
 
-  // componentDidMount() {
-  //   apiCities
-  //     .get()
-  //     .then((res) => {
-  //       console.log(res);
-  //       return res.data._embedded["city:search-results"].map((city) => ({
-  //         name: city.matching_full_name.split(",")[0],
-  //         country: city.matching_full_name.split(",")[2],
-  //         link: city._links["city:item"].href,
-  //       }));
-  //     })
-  //     .then((cities) => this.updateCities(cities))
-  //     .catch((err) => console.log(err));
-  // }
-
-  // updateCities = (cities) => {
-  //   this.setState({
-  //     cities,
-  //   });
-  // };
-
   render() {
     console.log(this.state.cities);
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <CityCards cities={this.state.cities ? this.state.cities : []} />
       </>
     );
