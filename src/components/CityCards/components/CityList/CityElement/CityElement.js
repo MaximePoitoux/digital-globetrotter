@@ -3,20 +3,26 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
+import { IoClose } from "react-icons/io5";
 import { BiHeart } from "react-icons/bi";
 
 export default function CityElement(props) {
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(null);
   const classes = useStyles();
+
+  const handleMouseEnter = (e) => {
+    return setIsShown(e.currentTarget.id);
+  };
 
   return (
     <>
       {props.cities.map((city, index) => (
         <Card
-          onMouseEnter={() => setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={() => setIsShown(null)}
           className={classes.card}
-          key={city + index}
+          key={city.ua_id}
+          id={city.ua_id}
         >
           <CardActionArea>
             <CardMedia
@@ -24,10 +30,15 @@ export default function CityElement(props) {
               image={city._embedded["ua:images"].photos[0].image.mobile}
               title={city.name}
             >
-              {isShown ? (
-                <div className={classes.iconContainer}>
-                  <BiHeart className={classes.iconHeart} />
-                </div>
+              {isShown === city.ua_id ? (
+                <>
+                  <div className={classes.iconCloseContainer}>
+                    <IoClose className={classes.iconClose} />
+                  </div>
+                  <div className={classes.iconHeartContainer}>
+                    <BiHeart className={classes.iconHeart} />
+                  </div>
+                </>
               ) : null}
               <div className={classes.countryName}>{city.name}</div>
               <div className={classes.cityName}>
@@ -63,7 +74,16 @@ const useStyles = makeStyles({
     fontWeight: "bold",
     fontSize: "1.2em",
   },
-  iconContainer: {
+  iconCloseContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    margin: "10px",
+  },
+  iconClose: {
+    fontSize: "2.4em",
+  },
+  iconHeartContainer: {
     position: "absolute",
     top: 0,
     right: 0,
