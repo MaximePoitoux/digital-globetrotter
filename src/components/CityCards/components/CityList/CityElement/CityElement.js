@@ -5,6 +5,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import { IoClose } from "react-icons/io5";
 import { BiHeart } from "react-icons/bi";
+import { Gauge } from "../../../../Gauge/Gauge";
 
 export default function CityElement(props) {
   const [isShown, setIsShown] = useState(null);
@@ -43,6 +44,12 @@ export default function CityElement(props) {
               <div className={classes.countryName}>{city.name}</div>
               <div className={classes.cityName}>
                 {city.full_name.split(",")[1]}
+              </div>
+              <div className={classes.gaugeContainer}>
+                <Gauge
+                  value={city._embedded["ua:scores"].teleport_city_score}
+                  className={classes.gauge}
+                />
               </div>
             </CardMedia>
           </CardActionArea>
@@ -99,5 +106,11 @@ const useStyles = makeStyles({
   },
   iconHeart: {
     fontSize: "2em",
+  },
+  gaugeContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    margin: 10,
   },
 });
