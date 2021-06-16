@@ -27,33 +27,23 @@ export const Gauge = ({ value, min = 0, max = 100, label, units }) => {
     .endAngle(angle)
     .cornerRadius(1)();
 
-  let colorScale;
+  // let colorScale;
 
-  // switch (value) {
-  //   case value <= 100 && value >= 50:
-  //     colorScale = scaleLinear().domain([0, 1]).range(["#7bed9f", "#2ed573"]);
-  //     break;
-  //   case value < 50 && value > 35:
-  //     colorScale = scaleLinear().domain([0, 1]).range(["#f39c12", "#f1c40f"]);
-  //     break;
-  //   case value < 35 && value >= 0:
-  //     colorScale = scaleLinear().domain([0, 1]).range(["#ff4d4d", "#e74c3c"]);
-  //     break;
-  //   default:
-  //     colorScale = scaleLinear().domain([0, 1]).range(["#7bed9f", "#2ed573"]);
+  // if (value >= 60) {
+  //   colorScale = scaleLinear().domain([0, 1]).range(["#7bed9f", "#2ed573"]);
+  // } else if (value < 60 && value >= 40) {
+  //   colorScale = scaleLinear().domain([0, 1]).range(["#f39c12", "#f1c40f"]);
+  // } else if (value < 40) {
+  //   colorScale = scaleLinear().domain([0, 1]).range(["#ff4d4d", "#e74c3c"]);
+  // } else {
+  //   colorScale = scaleLinear().domain([0, 1]).range(["#2c3e50", "#2c3e50"]);
   // }
 
-  if (value >= 60) {
-    colorScale = scaleLinear().domain([0, 1]).range(["#7bed9f", "#2ed573"]);
-  } else if (value < 60 && value >= 40) {
-    colorScale = scaleLinear().domain([0, 1]).range(["#f39c12", "#f1c40f"]);
-  } else if (value < 40) {
-    colorScale = scaleLinear().domain([0, 1]).range(["#ff4d4d", "#e74c3c"]);
-  } else {
-    colorScale = scaleLinear().domain([0, 1]).range(["#2c3e50", "#2c3e50"]);
-  }
-
-  // const colorScale = scaleLinear().domain([0, 1]).range(["#27ae60", "#32ff7e"]);
+  const colorScale = scaleLinear().domain([0, 1]).range(["#fffa65", "#32ff7e"]);
+  // #218c74
+  // #706fd3
+  // #474787
+  // #95afc0
 
   const gradientSteps = colorScale.ticks(10).map((value) => colorScale(value));
 

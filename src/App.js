@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-// import Header from "components/Header/Header";
-import CityCards from "components/CityCards";
+import CityList from "components/Cards";
 import apiCities from "services/api/api.cities";
 export default class App extends Component {
   constructor(props) {
@@ -39,11 +38,6 @@ export default class App extends Component {
 
   render() {
     console.log(this.state.cities);
-    return (
-      <>
-        {/* <Header /> */}
-        <CityCards cities={this.state.cities ? this.state.cities : []} />
-      </>
-    );
+    return <CityList cities={this.state.cities ? this.state.cities : []} />;
   }
 }
