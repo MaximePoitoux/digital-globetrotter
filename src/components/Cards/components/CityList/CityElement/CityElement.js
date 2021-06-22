@@ -5,8 +5,64 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import { IoClose } from "react-icons/io5";
 import { BiHeart } from "react-icons/bi";
-import { Gauge } from "../../../../Gauge/Gauge";
+import Gauge from "../../../../Gauge/Gauge";
 import CityModal from "../../../../Modal/CityModal";
+
+const useStyles = makeStyles({
+  card: {
+    minWidth: 250,
+    maxHeight: 350,
+    margin: "10px",
+  },
+  cardMedia: {
+    height: 250,
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "white",
+  },
+  cityName: {
+    fontWeight: "bold",
+  },
+  countryName: {
+    fontWeight: "bold",
+    fontSize: "1.2em",
+  },
+  iconCloseContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    margin: "10px",
+  },
+  iconClose: {
+    fontSize: "2.4em",
+  },
+  iconHeartContainer: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    background: "rgba(255, 255, 255, 0.2)",
+    backdropFilter: "blur(2px)",
+    borderRadius: "50%",
+    height: "35px",
+    width: "35px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "10px",
+  },
+  iconHeart: {
+    fontSize: "2em",
+  },
+  gaugeContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    margin: 10,
+  },
+});
 
 export default function CityElement(props) {
   const classes = useStyles();
@@ -68,59 +124,3 @@ export default function CityElement(props) {
     </>
   );
 }
-
-const useStyles = makeStyles({
-  card: {
-    minWidth: 250,
-    maxHeight: 350,
-    margin: "10px",
-  },
-  cardMedia: {
-    height: 250,
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "white",
-  },
-  cityName: {
-    fontWeight: "bold",
-  },
-  countryName: {
-    fontWeight: "bold",
-    fontSize: "1.2em",
-  },
-  iconCloseContainer: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    margin: "10px",
-  },
-  iconClose: {
-    fontSize: "2.4em",
-  },
-  iconHeartContainer: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    background: "rgba(255, 255, 255, 0.2)",
-    backdropFilter: "blur(2px)",
-    borderRadius: "50%",
-    height: "35px",
-    width: "35px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "10px",
-  },
-  iconHeart: {
-    fontSize: "2em",
-  },
-  gaugeContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    margin: 10,
-  },
-});

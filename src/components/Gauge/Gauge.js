@@ -3,7 +3,7 @@ import { arc } from "d3-shape";
 import { scaleLinear } from "d3-scale";
 import { format } from "d3-format";
 
-export const Gauge = ({ value, min = 0, max = 100, label, units }) => {
+const Gauge = ({ value, min = 0, max = 100, label, units }) => {
   const backgroundArc = arc()
     .innerRadius(0.65)
     .outerRadius(1)
@@ -142,3 +142,5 @@ const getCoordsOnArc = (angle, offset = 10) => [
   Math.cos(angle - Math.PI / 2) * offset,
   Math.sin(angle - Math.PI / 2) * offset,
 ];
+
+export default Gauge;

@@ -2,7 +2,15 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CityElement from "./CityElement/CityElement";
 
-export default function CityList(props) {
+const useStyles = makeStyles({
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+  },
+});
+
+const CityList = (props) => {
   const classes = useStyles();
   const { cities } = props;
 
@@ -13,12 +21,6 @@ export default function CityList(props) {
       ))}
     </div>
   );
-}
+};
 
-const useStyles = makeStyles({
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-  },
-});
+export default CityList;
