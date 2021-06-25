@@ -41,12 +41,23 @@ const useStyles = makeStyles({
     },
   }),
 });
-
 const LinearProgressBarWithLabel = (props) => {
-  const classes = useStyles(props);
-  const { name, value, color } = props;
-
+  // let colorProgress;
   let categoryIcon;
+
+  const { name, value, color } = props;
+  const classes = useStyles(props);
+
+  // if (value > 55) {
+  //   colorProgress = "green";
+  //   console.log(colorProgress);
+  // } else if (value < 55 && value >= 30) {
+  //   colorProgress = "yellow";
+  //   console.log(colorProgress);
+  // } else if (value < 30) {
+  //   colorProgress = "red";
+  //   console.log(colorProgress);
+  // }
 
   switch (name) {
     case "Housing":
