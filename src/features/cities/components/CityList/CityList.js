@@ -12,12 +12,18 @@ const useStyles = makeStyles({
 
 const CityList = (props) => {
   const classes = useStyles();
-  const { cities } = props;
+  const { cities, favorites, addFavorite, removeFavorite } = props;
 
   return (
     <div className={classes.container}>
       {cities.map((city, index) => (
-        <CityElement key={city.ua_id} city={city} />
+        <CityElement
+          key={city.ua_id}
+          city={city}
+          isFavorite={favorites.includes(city.ua_id)}
+          addFavorite={addFavorite}
+          removeFavorite={removeFavorite}
+        />
       ))}
     </div>
   );

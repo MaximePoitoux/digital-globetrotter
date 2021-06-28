@@ -42,104 +42,105 @@ const useStyles = makeStyles({
   }),
 });
 const LinearProgressBarWithLabel = (props) => {
-  // let colorProgress;
-  let categoryIcon;
-
   const { name, value, color } = props;
   const classes = useStyles(props);
 
-  // if (value > 55) {
-  //   colorProgress = "green";
-  //   console.log(colorProgress);
-  // } else if (value < 55 && value >= 30) {
-  //   colorProgress = "yellow";
-  //   console.log(colorProgress);
-  // } else if (value < 30) {
-  //   colorProgress = "red";
-  //   console.log(colorProgress);
-  // }
+  const chooseCategoryIcon = () => {
+    let categoryIcon;
 
-  switch (name) {
-    case "Housing":
-      categoryIcon = (
-        <BsFillHouseFill color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Cost of Living":
-      categoryIcon = <BiDollar color={color} style={{ marginRight: "4px" }} />;
-      break;
-    case "Startups":
-      categoryIcon = (
-        <IoRocketSharp color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Venture Capital":
-      categoryIcon = (
-        <GiReceiveMoney color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Travel Connectivity":
-      categoryIcon = (
-        <AiOutlineGlobal color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Commute":
-      categoryIcon = <FaSubway color={color} style={{ marginRight: "4px" }} />;
-      break;
-    case "Business Freedom":
-      categoryIcon = (
-        <IoBusiness color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Safety":
-      categoryIcon = (
-        <AiFillSafetyCertificate color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Healthcare":
-      categoryIcon = (
-        <GiHealthNormal color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Education":
-      categoryIcon = (
-        <IoSchoolSharp color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Environmental Quality":
-      categoryIcon = <FaLeaf color={color} style={{ marginRight: "4px" }} />;
-      break;
-    case "Economy":
-      categoryIcon = (
-        <RiExchangeDollarFill color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Taxation":
-      categoryIcon = <FaCoins color={color} style={{ marginRight: "4px" }} />;
-      break;
-    case "Internet Access":
-      categoryIcon = <FaWifi color={color} style={{ marginRight: "4px" }} />;
-      break;
-    case "Leisure & Culture":
-      categoryIcon = (
-        <FaTheaterMasks color={color} style={{ marginRight: "4px" }} />
-      );
-      break;
-    case "Tolerance":
-      categoryIcon = <GiLovers color={color} style={{ marginRight: "4px" }} />;
-      break;
-    case "Outdoors":
-      categoryIcon = <BiDrink color={color} style={{ marginRight: "4px" }} />;
-      break;
-    default:
-      return null;
-  }
+    switch (name) {
+      case "Housing":
+        categoryIcon = (
+          <BsFillHouseFill color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Cost of Living":
+        categoryIcon = (
+          <BiDollar color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Startups":
+        categoryIcon = (
+          <IoRocketSharp color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Venture Capital":
+        categoryIcon = (
+          <GiReceiveMoney color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Travel Connectivity":
+        categoryIcon = (
+          <AiOutlineGlobal color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Commute":
+        categoryIcon = (
+          <FaSubway color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Business Freedom":
+        categoryIcon = (
+          <IoBusiness color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Safety":
+        categoryIcon = (
+          <AiFillSafetyCertificate
+            color={color}
+            style={{ marginRight: "4px" }}
+          />
+        );
+        break;
+      case "Healthcare":
+        categoryIcon = (
+          <GiHealthNormal color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Education":
+        categoryIcon = (
+          <IoSchoolSharp color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Environmental Quality":
+        categoryIcon = <FaLeaf color={color} style={{ marginRight: "4px" }} />;
+        break;
+      case "Economy":
+        categoryIcon = (
+          <RiExchangeDollarFill color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Taxation":
+        categoryIcon = <FaCoins color={color} style={{ marginRight: "4px" }} />;
+        break;
+      case "Internet Access":
+        categoryIcon = <FaWifi color={color} style={{ marginRight: "4px" }} />;
+        break;
+      case "Leisure & Culture":
+        categoryIcon = (
+          <FaTheaterMasks color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Tolerance":
+        categoryIcon = (
+          <GiLovers color={color} style={{ marginRight: "4px" }} />
+        );
+        break;
+      case "Outdoors":
+        categoryIcon = <BiDrink color={color} style={{ marginRight: "4px" }} />;
+        break;
+      default:
+        return null;
+    }
+
+    return categoryIcon;
+  };
 
   return (
     <div className={classes.root}>
       <Box display="flex" alignItems="center">
         <Box display="flex" alignItems="center" minWidth={170}>
-          {categoryIcon}
+          {chooseCategoryIcon()}
           <Typography variant="body2" color="textSecondary">
             {name}
           </Typography>

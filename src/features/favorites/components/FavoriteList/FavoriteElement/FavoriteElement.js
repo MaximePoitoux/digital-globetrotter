@@ -4,8 +4,11 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Box from "@material-ui/core/Box";
+import Gauge from "../../../../../components/Gauge/Gauge";
+import CityModal from "../../../../../components/Modal/CityModal";
+import IconButton from "@material-ui/core/IconButton";
 import { IoClose } from "react-icons/io5";
-import { BiHeart } from "react-icons/bi";
+// import { FaHeart } from "react-icons/fa";
 import { FaWifi } from "react-icons/fa";
 import {
   WiDaySunny,
@@ -16,10 +19,8 @@ import {
   WiDayStormShowers,
   WiDaySnow,
   WiHot,
-  WiFire,
 } from "weather-icons-react";
-import Gauge from "../../../../Gauge/Gauge";
-import CityModal from "../../../../Modal/CityModal";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles({
   card: {
@@ -54,17 +55,19 @@ const useStyles = makeStyles({
   },
   iconHeartContainer: {
     position: "absolute",
+    margin: 5,
     top: 0,
     right: 0,
-    background: "rgba(255, 255, 255, 0.2)",
-    backdropFilter: "blur(2px)",
-    borderRadius: "50%",
-    height: "35px",
-    width: "35px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "10px",
+    zIndex: 1,
+    // background: "rgba(255, 255, 255, 0.2)",
+    // backdropFilter: "blur(2px)",
+    // borderRadius: "50%",
+    // height: "35px",
+    // width: "35px",
+    // display: "flex",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // margin: "10px",
   },
   climateContainer: {
     position: "absolute",
@@ -102,11 +105,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CityElement(props) {
+export default function FavoriteElement(props) {
   const classes = useStyles();
   const [isShown, setIsShown] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const { city } = props;
+  const { favorites, removeFavorite } = props;
 
   const handleMouseEnter = (e) => {
     return setIsShown(e.currentTarget.id);
@@ -120,7 +123,7 @@ export default function CityElement(props) {
     setOpenModal(false);
   };
 
-  const conditionClimateIcon = (climate) => {
+  const chooseClimateIcon = (climate) => {
     let climateIcon;
 
     switch (climate) {
@@ -156,7 +159,7 @@ export default function CityElement(props) {
         break;
       case "Tropical and Subtropical Desert Climate":
         climateIcon = (
-          <WiFire
+          <WiHot
             key={climate}
             color="white"
             style={{ fontSize: "2.4em", marginRight: 4 }}
@@ -257,22 +260,29 @@ export default function CityElement(props) {
     return climateIcon;
   };
 
-  const getInternetAccess = (city) => {
-    return city._embedded["ua:details"].categories
+  const getWeatherType = (favorites) => {
+    return favorites._embedded["ua:details"].categories[2].data
+      .filter((x) => x.id === "WEATHER-TYPE")
+      .map((x) => chooseClimateIcon(x.string_value));
+  };
+
+  const getWeatherAverageHigh = (favorites) => {
+    return favorites._embedded["ua:details"].categories[2].data
+      .filter((x) => x.id === "WEATHER-AVERAGE-HIGH")
+      .map((x) => Math.round(x.string_value) + "°C");
+  };
+
+  const getInternetAccess = (favorites) => {
+    return favorites._embedded["ua:details"].categories
       .filter((x) => x.id === "NETWORK")
       .map((x) => Math.round(x.data[0].float_value));
   };
 
-  const getWeatherType = (city) => {
-    return city._embedded["ua:details"].categories[2].data
-      .filter((x) => x.id === "WEATHER-TYPE")
-      .map((x) => conditionClimateIcon(x.string_value));
-  };
-
-  const getWeatherAverageHigh = (city) => {
-    return city._embedded["ua:details"].categories[2].data
-      .filter((x) => x.id === "WEATHER-AVERAGE-HIGH")
-      .map((x) => Math.round(x.string_value) + "°C");
+  const getPriceHousing = (favorites) => {
+    return favorites._embedded["ua:details"].categories[8].data[1]
+      .currency_dollar_value
+      ? `€${favorites._embedded["ua:details"].categories[8].data[2].currency_dollar_value} / mo`
+      : ` € ? / mo`;
   };
 
   return (
@@ -282,32 +292,38 @@ export default function CityElement(props) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsShown(null)}
         className={classes.card}
-        id={city.ua_id}
+        id={favorites.ua_id}
       >
         <CardActionArea>
           <CardMedia
             className={classes.cardMedia}
-            image={city._embedded["ua:images"].photos[0].image.mobile}
-            title={city.name}
+            image={favorites._embedded["ua:images"].photos[0].image.mobile}
+            title={favorites.name}
           >
-            {isShown === city.ua_id ? (
+            {isShown === favorites.ua_id ? (
               <>
                 <div className={classes.iconCloseContainer}>
                   <IoClose className={classes.iconClose} />
                 </div>
-                <div className={classes.iconHeartContainer}>
-                  <BiHeart size="2em" />
-                </div>
+                <IconButton
+                  className={classes.iconHeartContainer}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    return removeFavorite(favorites.ua_id);
+                  }}
+                >
+                  <FavoriteIcon style={{ fontSize: 30, color: "#ff7675" }} />
+                </IconButton>
               </>
             ) : null}
-            <div className={classes.countryName}>{city.name}</div>
+            <div className={classes.countryName}>{favorites.name}</div>
             <div className={classes.cityName}>
-              {city.full_name.split(",")[1]}
+              {favorites.full_name.split(",")[1]}
             </div>
             {/* Climate */}
             <div className={classes.climateContainer}>
-              {getWeatherType(city)}
-              {getWeatherAverageHigh(city)}
+              {getWeatherType(favorites)}
+              {getWeatherAverageHigh(favorites)}
             </div>
             {/* Internet Access */}
             <div className={classes.internetContainer}>
@@ -318,28 +334,29 @@ export default function CityElement(props) {
                 justifyContent="center"
                 alignItems="center"
               >
-                {getInternetAccess(city)}
+                {getInternetAccess(favorites)}
                 <small style={{ fontSize: "0.6em" }}>Mbps</small>
               </Box>
             </div>
             {/* Global score */}
             <div className={classes.gaugeContainer}>
               <Gauge
-                value={city._embedded["ua:scores"].teleport_city_score}
+                value={favorites._embedded["ua:scores"].teleport_city_score}
                 className={classes.gauge}
               />
             </div>
             {/* Housing */}
             <div className={classes.housingContainer}>
-              {city._embedded["ua:details"].categories[8].data[1]
-                .currency_dollar_value
-                ? `€${city._embedded["ua:details"].categories[8].data[2].currency_dollar_value} / mo`
-                : ` € ? / mo`}
+              {getPriceHousing(favorites)}
             </div>
           </CardMedia>
         </CardActionArea>
       </Card>
-      <CityModal city={city} openModal={openModal} handleClose={handleClose} />
+      <CityModal
+        city={favorites}
+        openModal={openModal}
+        handleClose={handleClose}
+      />
     </>
   );
 }

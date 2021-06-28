@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 import "./App.css";
-import CityList from "components/Cards";
+import Cities from "./features/cities";
+import Favorites from "./features/favorites";
 import apiCities from "services/api/api.cities";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       cities: null,
+      favorites: [],
+      loaded: false,
     };
   }
 
@@ -33,11 +42,67 @@ export default class App extends Component {
   updateCities = (cities) => {
     this.setState({
       cities,
+      loaded: true,
+    });
+  };
+
+  // Méthode qui permet d'ajouter une ville en favoris
+  addFavorite = (id) => {
+    const favorites = [...this.state.favorites]; // Notation ES6 OU this.state.favorites.slice();
+    const city = this.state.cities.find((c) => c.ua_id === id);
+    favorites.push(city);
+
+    this.setState({
+      favorites,
+    });
+  };
+
+  // Méthode qui permet de supprimer une ville des favoris
+  removeFavorite = (id) => {
+    const favorites = [...this.state.favorites]; // Notation ES6 OU this.state.favorites.slice()
+    const index = this.state.favorites.findIndex((f) => f.ua_id === id);
+    favorites.splice(index, 1);
+
+    this.setState({
+      favorites,
     });
   };
 
   render() {
     console.log(this.state.cities);
-    return <CityList cities={this.state.cities ? this.state.cities : []} />;
+    return (
+      <Router>
+        <Switch>
+          <Route
+            path="/cities"
+            render={(props) => {
+              return (
+                <Cities
+                  {...props}
+                  cities={this.state.cities}
+                  favorites={this.state.favorites.map((f) => f.ua_id)}
+                  loaded={this.state.loaded}
+                  addFavorite={this.addFavorite}
+                  removeFavorite={this.removeFavorite}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/favorites"
+            render={(props) => {
+              return (
+                <Favorites
+                  {...props}
+                  favorites={this.state.favorites}
+                  removeFavorite={this.removeFavorite}
+                />
+              );
+            }}
+          />
+          <Redirect to="/cities" />
+        </Switch>
+      </Router>
+    );
   }
 }
