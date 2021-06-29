@@ -4,16 +4,17 @@ import Header from "../../components/Header/Header";
 import Loading from "../../components/utils/Loading";
 
 const index = (props) => {
-  const { cities, favorites, addFavorite, removeFavorite, removeCity } = props;
+  const { loaded, cities, favorites, addFavorite, removeFavorite, removeCity } =
+    props;
 
   return (
     <>
-      {props.loaded ? (
+      {loaded ? (
         <>
           <Header />
           <CityList
             cities={cities}
-            favorites={favorites}
+            favorites={favorites.map((f) => f.ua_id)}
             addFavorite={addFavorite}
             removeFavorite={removeFavorite}
             removeCity={removeCity}

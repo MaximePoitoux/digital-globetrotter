@@ -3,6 +3,7 @@ import "./App.css";
 import Cities from "./features/cities";
 import Favorites from "./features/favorites";
 import apiCities from "services/api/api.cities";
+import apiFirebase from "services/api/api.firebase";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,7 +16,7 @@ export default class App extends Component {
 
     this.state = {
       cities: null,
-      favorites: [],
+      favorites: null,
       loaded: false,
     };
   }
@@ -26,6 +27,11 @@ export default class App extends Component {
       .then((res) => res.data._embedded["ua:item"])
       .then((cities) => this.updateCities(this.sortCitiesByScore(cities)))
       .catch((err) => console.log(err));
+
+    apiFirebase.get("favorites.json").then((res) => {
+      let favorites = res.data ? res.data : [];
+      this.updateFavorites(favorites);
+    });
   }
 
   // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales
@@ -38,11 +44,19 @@ export default class App extends Component {
     return [...cities].sort(byScore);
   };
 
-  // Méthode qui permet de modifier le state initial
+  // Méthode qui permet de modifier le state cities
   updateCities = (cities) => {
     this.setState({
       cities,
-      loaded: true,
+      loaded: this.state.favorites ? true : false,
+    });
+  };
+
+  // Méthode qui permet de modifier le state favorites
+  updateFavorites = (favorites) => {
+    this.setState({
+      favorites,
+      loaded: this.state.cities ? true : false,
     });
   };
 
@@ -52,9 +66,14 @@ export default class App extends Component {
     const city = this.state.cities.find((c) => c.ua_id === id);
     favorites.push(city);
 
-    this.setState({
-      favorites,
-    });
+    this.setState(
+      {
+        favorites,
+      },
+      () => {
+        this.saveFavorites();
+      }
+    );
   };
 
   // Méthode qui permet de supprimer une ville des favoris
@@ -63,9 +82,18 @@ export default class App extends Component {
     const index = this.state.favorites.findIndex((f) => f.ua_id === id);
     favorites.splice(index, 1);
 
-    this.setState({
-      favorites,
-    });
+    this.setState(
+      {
+        favorites,
+      },
+      () => {
+        this.saveFavorites();
+      }
+    );
+  };
+
+  saveFavorites = () => {
+    apiFirebase.put("favorites.json", this.state.favorites);
   };
 
   // Méthode qui permet de supprimer une ville de la liste des villes
@@ -91,9 +119,9 @@ export default class App extends Component {
               return (
                 <Cities
                   {...props}
-                  cities={this.state.cities}
-                  favorites={this.state.favorites.map((f) => f.ua_id)}
                   loaded={this.state.loaded}
+                  cities={this.state.cities}
+                  favorites={this.state.favorites}
                   addFavorite={this.addFavorite}
                   removeFavorite={this.removeFavorite}
                   removeCity={this.removeCity}
@@ -107,6 +135,7 @@ export default class App extends Component {
               return (
                 <Favorites
                   {...props}
+                  loaded={this.state.loaded}
                   favorites={this.state.favorites}
                   removeFavorite={this.removeFavorite}
                 />
