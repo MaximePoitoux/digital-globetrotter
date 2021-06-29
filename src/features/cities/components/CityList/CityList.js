@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 
 const CityList = (props) => {
   const classes = useStyles();
-  const { cities, favorites, addFavorite, removeFavorite } = props;
+  const { cities, favorites, addFavorite, removeFavorite, removeCity } = props;
 
   return (
     <div className={classes.container}>
@@ -23,6 +23,7 @@ const CityList = (props) => {
           isFavorite={favorites.includes(city.ua_id)}
           addFavorite={addFavorite}
           removeFavorite={removeFavorite}
+          removeCity={removeCity}
         />
       ))}
     </div>

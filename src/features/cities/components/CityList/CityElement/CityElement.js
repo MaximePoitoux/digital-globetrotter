@@ -7,8 +7,8 @@ import Box from "@material-ui/core/Box";
 import Gauge from "../../../../../components/Gauge/Gauge";
 import CityModal from "../../../../../components/Modal/CityModal";
 import IconButton from "@material-ui/core/IconButton";
-import { IoClose } from "react-icons/io5";
-// import { FaHeart } from "react-icons/fa";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import CloseIcon from "@material-ui/icons/Close";
 import { FaWifi } from "react-icons/fa";
 import {
   WiDaySunny,
@@ -20,7 +20,6 @@ import {
   WiDaySnow,
   WiHot,
 } from "weather-icons-react";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles({
   card: {
@@ -46,12 +45,10 @@ const useStyles = makeStyles({
   },
   iconCloseContainer: {
     position: "absolute",
+    margin: 5,
     top: 0,
     left: 0,
-    margin: "10px",
-  },
-  iconClose: {
-    fontSize: "2.4em",
+    zIndex: 1,
   },
   iconHeartContainer: {
     position: "absolute",
@@ -59,15 +56,6 @@ const useStyles = makeStyles({
     top: 0,
     right: 0,
     zIndex: 1,
-    // background: "rgba(255, 255, 255, 0.2)",
-    // backdropFilter: "blur(2px)",
-    // borderRadius: "50%",
-    // height: "35px",
-    // width: "35px",
-    // display: "flex",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // margin: "10px",
   },
   climateContainer: {
     position: "absolute",
@@ -109,7 +97,7 @@ export default function CityElement(props) {
   const classes = useStyles();
   const [isShown, setIsShown] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const { city, isFavorite, addFavorite, removeFavorite } = props;
+  const { city, isFavorite, addFavorite, removeFavorite, removeCity } = props;
 
   const handleMouseEnter = (e) => {
     return setIsShown(e.currentTarget.id);
@@ -302,9 +290,15 @@ export default function CityElement(props) {
           >
             {isShown === city.ua_id ? (
               <>
-                <div className={classes.iconCloseContainer}>
-                  <IoClose className={classes.iconClose} />
-                </div>
+                <IconButton
+                  className={classes.iconCloseContainer}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    return removeCity(city.ua_id);
+                  }}
+                >
+                  <CloseIcon style={{ fontSize: 30 }} />
+                </IconButton>
                 {isFavorite ? (
                   <IconButton
                     className={classes.iconHeartContainer}

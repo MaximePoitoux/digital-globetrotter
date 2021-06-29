@@ -68,6 +68,18 @@ export default class App extends Component {
     });
   };
 
+  // Méthode qui permet de supprimer une ville de la liste des villes
+  removeCity = (id) => {
+    const cities = [...this.state.cities]; // 1 => Copie une référence du tableau original
+    const index = this.state.cities.findIndex((c) => c.ua_id === id); // 2 => Récupère l'index de l'élément du tableau à retirer en vérifiant leurs index
+    cities.splice(index, 1); // 3 => Modifie le contenu de mon tableau en retirant un élément grâce à l'index
+
+    // 4 => Modifie mon state en remplaçant l'ancien tableau par le niveau
+    this.setState({
+      cities,
+    });
+  };
+
   render() {
     console.log(this.state.cities);
     return (
@@ -84,6 +96,7 @@ export default class App extends Component {
                   loaded={this.state.loaded}
                   addFavorite={this.addFavorite}
                   removeFavorite={this.removeFavorite}
+                  removeCity={this.removeCity}
                 />
               );
             }}

@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import Loading from "../../components/utils/Loading";
 
 const index = (props) => {
-  const { cities, favorites, addFavorite, removeFavorite } = props;
+  const { cities, favorites, addFavorite, removeFavorite, removeCity } = props;
 
   return (
     <>
@@ -16,6 +16,7 @@ const index = (props) => {
             favorites={favorites}
             addFavorite={addFavorite}
             removeFavorite={removeFavorite}
+            removeCity={removeCity}
           />
         </>
       ) : (

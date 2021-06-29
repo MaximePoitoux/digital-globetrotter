@@ -7,8 +7,7 @@ import Box from "@material-ui/core/Box";
 import Gauge from "../../../../../components/Gauge/Gauge";
 import CityModal from "../../../../../components/Modal/CityModal";
 import IconButton from "@material-ui/core/IconButton";
-import { IoClose } from "react-icons/io5";
-// import { FaHeart } from "react-icons/fa";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import { FaWifi } from "react-icons/fa";
 import {
   WiDaySunny,
@@ -20,7 +19,6 @@ import {
   WiDaySnow,
   WiHot,
 } from "weather-icons-react";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles({
   card: {
@@ -59,15 +57,6 @@ const useStyles = makeStyles({
     top: 0,
     right: 0,
     zIndex: 1,
-    // background: "rgba(255, 255, 255, 0.2)",
-    // backdropFilter: "blur(2px)",
-    // borderRadius: "50%",
-    // height: "35px",
-    // width: "35px",
-    // display: "flex",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // margin: "10px",
   },
   climateContainer: {
     position: "absolute",
@@ -301,20 +290,15 @@ export default function FavoriteElement(props) {
             title={favorites.name}
           >
             {isShown === favorites.ua_id ? (
-              <>
-                <div className={classes.iconCloseContainer}>
-                  <IoClose className={classes.iconClose} />
-                </div>
-                <IconButton
-                  className={classes.iconHeartContainer}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    return removeFavorite(favorites.ua_id);
-                  }}
-                >
-                  <FavoriteIcon style={{ fontSize: 30, color: "#ff7675" }} />
-                </IconButton>
-              </>
+              <IconButton
+                className={classes.iconHeartContainer}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  return removeFavorite(favorites.ua_id);
+                }}
+              >
+                <FavoriteIcon style={{ fontSize: 30, color: "#ff7675" }} />
+              </IconButton>
             ) : null}
             <div className={classes.countryName}>{favorites.name}</div>
             <div className={classes.cityName}>
