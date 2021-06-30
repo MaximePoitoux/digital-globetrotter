@@ -12,8 +12,8 @@ const Loading = () => {
     >
       <img
         alt="Loading gif"
-        src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-16.jpg"
-        style={{ height: 150, width: "auto" }}
+        src="https://cdn.dribbble.com/users/940782/screenshots/3533101/plane-loader-slower.gif"
+        style={{ height: 250, width: "auto" }}
       />
     </div>
   );

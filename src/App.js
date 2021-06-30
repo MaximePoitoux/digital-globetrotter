@@ -34,16 +34,6 @@ export default class App extends Component {
     });
   }
 
-  // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales
-  sortCitiesByScore = (cities) => {
-    const sortByMapped = (map, compareFn) => (a, b) =>
-      compareFn(map(a), map(b));
-    const byValue = (a, b) => b - a;
-    const toScore = (e) => e._embedded["ua:scores"].teleport_city_score;
-    const byScore = sortByMapped(toScore, byValue);
-    return [...cities].sort(byScore);
-  };
-
   // Méthode qui permet de modifier le state cities
   updateCities = (cities) => {
     this.setState({
@@ -58,6 +48,16 @@ export default class App extends Component {
       favorites,
       loaded: this.state.cities ? true : false,
     });
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales
+  sortCitiesByScore = (cities) => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) => e._embedded["ua:scores"].teleport_city_score;
+    const byScore = sortByMapped(toScore, byValue);
+    return [...cities].sort(byScore);
   };
 
   // Méthode qui permet d'ajouter une ville en favoris

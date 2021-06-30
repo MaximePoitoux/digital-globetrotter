@@ -35,6 +35,9 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     color: "white",
+    "&:hover": {
+      opacity: 0.5,
+    },
   },
   cityName: {
     fontWeight: "bold",
@@ -283,45 +286,45 @@ export default function CityElement(props) {
         id={city.ua_id}
       >
         <CardActionArea>
+          {isShown === city.ua_id ? (
+            <>
+              <IconButton
+                className={classes.iconCloseContainer}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  return removeCity(city.ua_id);
+                }}
+              >
+                <CloseIcon style={{ fontSize: 30 }} />
+              </IconButton>
+              {isFavorite ? (
+                <IconButton
+                  className={classes.iconHeartContainer}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    return removeFavorite(city.ua_id);
+                  }}
+                >
+                  <FavoriteIcon style={{ fontSize: 30, color: "#ff7675" }} />
+                </IconButton>
+              ) : (
+                <IconButton
+                  className={classes.iconHeartContainer}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    return addFavorite(city.ua_id);
+                  }}
+                >
+                  <FavoriteIcon style={{ fontSize: 30 }} />
+                </IconButton>
+              )}
+            </>
+          ) : null}
           <CardMedia
             className={classes.cardMedia}
             image={city._embedded["ua:images"].photos[0].image.mobile}
             title={city.name}
           >
-            {isShown === city.ua_id ? (
-              <>
-                <IconButton
-                  className={classes.iconCloseContainer}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    return removeCity(city.ua_id);
-                  }}
-                >
-                  <CloseIcon style={{ fontSize: 30 }} />
-                </IconButton>
-                {isFavorite ? (
-                  <IconButton
-                    className={classes.iconHeartContainer}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      return removeFavorite(city.ua_id);
-                    }}
-                  >
-                    <FavoriteIcon style={{ fontSize: 30, color: "#ff7675" }} />
-                  </IconButton>
-                ) : (
-                  <IconButton
-                    className={classes.iconHeartContainer}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      return addFavorite(city.ua_id);
-                    }}
-                  >
-                    <FavoriteIcon style={{ fontSize: 30 }} />
-                  </IconButton>
-                )}
-              </>
-            ) : null}
             <div className={classes.countryName}>{city.name}</div>
             <div className={classes.cityName}>
               {city.full_name.split(",")[1]}

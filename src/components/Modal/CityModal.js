@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Slide from "@material-ui/core/Slide";
-import LinearProgressBarWithLabel from "../LinearProgressBar/LinearProgressBarWithLabel";
+import Tabs from "./Tabs/CustomTabs";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -12,11 +12,11 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: 500,
-    height: 500,
+    height: 580,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    borderRadius: 5,
+    // padding: theme.spacing(2, 4, 3),
+    borderRadius: "8px 8px 5px 5px",
   },
   linearProgressBarContainer: {
     padding: 5,
@@ -37,18 +37,7 @@ const CityModal = (props) => {
     >
       <Slide direction="up" in={openModal} mountOnEnter unmountOnExit>
         <div className={classes.paper}>
-          {city._embedded["ua:scores"].categories.map((category) => (
-            <div
-              key={category.name}
-              className={classes.linearProgressBarContainer}
-            >
-              <LinearProgressBarWithLabel
-                name={category.name}
-                value={category.score_out_of_10 * 10}
-                color={category.color}
-              />
-            </div>
-          ))}
+          <Tabs city={city} />
         </div>
       </Slide>
     </Modal>
