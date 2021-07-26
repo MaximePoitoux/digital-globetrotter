@@ -3,9 +3,7 @@ import Header from "../../components/Header/Header";
 import { FavoriteList } from "./components";
 import Loading from "../../components/utils/Loading";
 
-const index = (props) => {
-  const { loaded, favorites, removeFavorite } = props;
-
+const index = ({ loaded, favorites, removeFavorite }) => {
   return (
     <>
       {loaded ? (

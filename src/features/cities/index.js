@@ -3,10 +3,14 @@ import { CityList } from "./components";
 import Header from "../../components/Header/Header";
 import Loading from "../../components/utils/Loading";
 
-const index = (props) => {
-  const { loaded, cities, favorites, addFavorite, removeFavorite, removeCity } =
-    props;
-
+const index = ({
+  loaded,
+  cities,
+  favorites,
+  addFavorite,
+  removeFavorite,
+  removeCity,
+}) => {
   return (
     <>
       {loaded ? (
