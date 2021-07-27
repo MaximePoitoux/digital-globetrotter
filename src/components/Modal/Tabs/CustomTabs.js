@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import LinearProgressBarWithLabel from "../../LinearProgressBar/LinearProgressBarWithLabel";
-
-const useStyles = makeStyles((theme) => ({
-  linearProgressBarContainer: {
-    padding: 5,
-  },
-}));
+import Tab0 from "./Tab/Tab0";
+import Tab11 from "./Tab/Tab11";
 
 const StyledTabs = withStyles({
   indicator: {
     display: "flex",
     justifyContent: "center",
     backgroundColor: "transparent",
-    // height: 1,
     "& > span": {
-      // maxWidth: 80,
       width: "100%",
       backgroundColor: "#55efc4",
     },
@@ -54,9 +47,7 @@ const TabPanel = (props) => {
   );
 };
 
-const CustomTabs = (props) => {
-  const classes = useStyles();
-  const { city } = props;
+const CustomTabs = ({ city }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -69,7 +60,6 @@ const CustomTabs = (props) => {
         position="static"
         style={{
           background: "#e17055",
-          borderRadius: "5px 5px 0px 0px",
         }}
       >
         <StyledTabs
@@ -89,24 +79,17 @@ const CustomTabs = (props) => {
           <StyledTab label="Climate" />
           <StyledTab label="Outdoors" />
           <StyledTab label="On Living" />
+          <StyledTab label="Resume" />
         </StyledTabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        {city._embedded["ua:scores"].categories.map((category) => (
-          <div
-            key={category.name}
-            className={classes.linearProgressBarContainer}
-          >
-            <LinearProgressBarWithLabel
-              name={category.name}
-              value={category.score_out_of_10 * 10}
-              color={category.color}
-            />
-          </div>
-        ))}
+        <Tab0 city={city} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Cost of Living
+      </TabPanel>
+      <TabPanel value={value} index={11}>
+        <Tab11 city={city} />
       </TabPanel>
     </>
   );
