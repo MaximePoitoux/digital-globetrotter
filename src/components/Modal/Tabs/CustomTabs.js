@@ -4,6 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Tab0 from "./Tab/Tab0";
+import Tab1 from "./Tab/Tab1";
 import Tab11 from "./Tab/Tab11";
 
 const StyledTabs = withStyles({
@@ -86,7 +87,7 @@ const CustomTabs = ({ city }) => {
         <Tab0 city={city} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Cost of Living
+        <Tab1 city={city} />
       </TabPanel>
       <TabPanel value={value} index={11}>
         <Tab11 city={city} />
