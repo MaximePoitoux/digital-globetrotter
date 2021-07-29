@@ -5,7 +5,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Tab0 from "./Tab/Tab0";
 import Tab1 from "./Tab/Tab1";
-import Tab11 from "./Tab/Tab11";
+import Tab2 from "./Tab/Tab2";
+import Tab10 from "./Tab/Tab10";
 
 const StyledTabs = withStyles({
   indicator: {
@@ -71,7 +72,7 @@ const CustomTabs = ({ city }) => {
         >
           <StyledTab label="Life Quality Score" />
           <StyledTab label="Cost of Living" />
-          <StyledTab label="Taxation" />
+          {/* <StyledTab label="Taxation" /> */}
           <StyledTab label="Safety" />
           <StyledTab label="Education" />
           <StyledTab label="Visa" />
@@ -89,8 +90,11 @@ const CustomTabs = ({ city }) => {
       <TabPanel value={value} index={1}>
         <Tab1 city={city} />
       </TabPanel>
-      <TabPanel value={value} index={11}>
-        <Tab11 city={city} />
+      <TabPanel value={value} index={2}>
+        <Tab2 city={city} />
+      </TabPanel>
+      <TabPanel value={value} index={10}>
+        <Tab10 city={city} />
       </TabPanel>
     </>
   );

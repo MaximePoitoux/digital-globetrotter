@@ -55,8 +55,8 @@ const Tab1 = ({ city }) => {
   const getCostApartmentRentLarge = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "HOUSING")
-      .map((x) =>
-        x.data
+      .map((housing) =>
+        housing.data
           .filter((x) => x.id === "APARTMENT-RENT-LARGE")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -65,8 +65,8 @@ const Tab1 = ({ city }) => {
   const getCostApartmentRentMedium = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "HOUSING")
-      .map((x) =>
-        x.data
+      .map((housing) =>
+        housing.data
           .filter((x) => x.id === "APARTMENT-RENT-MEDIUM")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -75,8 +75,8 @@ const Tab1 = ({ city }) => {
   const getCostApartmentRentSmall = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "HOUSING")
-      .map((x) =>
-        x.data
+      .map((housing) =>
+        housing.data
           .filter((x) => x.id === "APARTMENT-RENT-SMALL")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -85,8 +85,8 @@ const Tab1 = ({ city }) => {
   const getCostCinema = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-CINEMA")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -95,8 +95,8 @@ const Tab1 = ({ city }) => {
   const getCostFitnessClub = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-FITNESS-CLUB")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -105,8 +105,8 @@ const Tab1 = ({ city }) => {
   const getCostPublicTransport = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-PUBLIC-TRANSPORT")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -115,8 +115,8 @@ const Tab1 = ({ city }) => {
   const getCostRestaurantMeal = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-RESTAURANT-MEAL")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -125,8 +125,8 @@ const Tab1 = ({ city }) => {
   const getCostImportBeer = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-IMPORT-BEER")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -135,8 +135,8 @@ const Tab1 = ({ city }) => {
   const getCostCoffee = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-CAPPUCCINO")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -145,8 +145,8 @@ const Tab1 = ({ city }) => {
   const getCostBread = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-BREAD")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -155,8 +155,8 @@ const Tab1 = ({ city }) => {
   const getCostApples = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-APPLES")
           .map((x) => "$" + x.currency_dollar_value)
       );
@@ -165,8 +165,8 @@ const Tab1 = ({ city }) => {
   const getCostTaxi = (city) => {
     return city._embedded["ua:details"].categories
       .filter((category) => category.id === "COST-OF-LIVING")
-      .map((x) =>
-        x.data
+      .map((costOfLiving) =>
+        costOfLiving.data
           .filter((x) => x.id === "COST-TAXI")
           .map((x) => "$" + x.currency_dollar_value)
       );
