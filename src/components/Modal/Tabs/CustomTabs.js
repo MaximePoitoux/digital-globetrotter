@@ -6,6 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Tab0 from "./Tab/Tab0";
 import Tab1 from "./Tab/Tab1";
 import Tab2 from "./Tab/Tab2";
+import Tab3 from "./Tab/Tab3";
 import Tab10 from "./Tab/Tab10";
 
 const StyledTabs = withStyles({
@@ -92,6 +93,9 @@ const CustomTabs = ({ city }) => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Tab2 city={city} />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Tab3 city={city} />
       </TabPanel>
       <TabPanel value={value} index={10}>
         <Tab10 city={city} />
