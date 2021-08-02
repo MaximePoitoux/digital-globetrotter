@@ -8,6 +8,7 @@ import Tab1 from "./Tab/Tab1";
 import Tab2 from "./Tab/Tab2";
 import Tab3 from "./Tab/Tab3";
 import Tab6 from "./Tab/Tab6";
+import Tab7 from "./Tab/Tab7";
 import Tab10 from "./Tab/Tab10";
 
 const StyledTabs = withStyles({
@@ -100,6 +101,9 @@ const CustomTabs = ({ city }) => {
       </TabPanel>
       <TabPanel value={value} index={6}>
         <Tab6 city={city} />
+      </TabPanel>
+      <TabPanel value={value} index={7}>
+        <Tab7 city={city} />
       </TabPanel>
       <TabPanel value={value} index={10}>
         <Tab10 city={city} />

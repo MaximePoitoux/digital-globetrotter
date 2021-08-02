@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "left",
     alignItems: "center",
     padding: "10px",
+    fontSize: "0.8em",
   },
   valueContainer: {
     display: "flex",
