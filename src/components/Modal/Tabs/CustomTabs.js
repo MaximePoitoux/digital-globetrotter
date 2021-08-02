@@ -7,9 +7,10 @@ import Tab0 from "./Tab/Tab0";
 import Tab1 from "./Tab/Tab1";
 import Tab2 from "./Tab/Tab2";
 import Tab3 from "./Tab/Tab3";
+import Tab4 from "./Tab/Tab4";
+import Tab5 from "./Tab/Tab5";
 import Tab6 from "./Tab/Tab6";
 import Tab7 from "./Tab/Tab7";
-import Tab10 from "./Tab/Tab10";
 
 const StyledTabs = withStyles({
   indicator: {
@@ -78,13 +79,14 @@ const CustomTabs = ({ city }) => {
           {/* <StyledTab label="Taxation" /> */}
           <StyledTab label="Safety" />
           <StyledTab label="Education" />
-          <StyledTab label="Visa" />
-          <StyledTab label="People" />
+          {/* <StyledTab label="Visa" /> */}
+          {/* <StyledTab label="People" /> */}
           <StyledTab label="LGBT Rights" />
           <StyledTab label="Climate" />
-          <StyledTab label="Outdoors" />
-          <StyledTab label="On Living" />
+          {/* <StyledTab label="Outdoors" /> */}
+          {/* <StyledTab label="On Living" /> */}
           <StyledTab label="Resume" />
+          <StyledTab label="Digital Globetrotter Guide" />
         </StyledTabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -99,14 +101,17 @@ const CustomTabs = ({ city }) => {
       <TabPanel value={value} index={3}>
         <Tab3 city={city} />
       </TabPanel>
+      <TabPanel value={value} index={4}>
+        <Tab4 city={city} />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <Tab5 city={city} />
+      </TabPanel>
       <TabPanel value={value} index={6}>
         <Tab6 city={city} />
       </TabPanel>
       <TabPanel value={value} index={7}>
         <Tab7 city={city} />
-      </TabPanel>
-      <TabPanel value={value} index={10}>
-        <Tab10 city={city} />
       </TabPanel>
     </>
   );
