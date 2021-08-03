@@ -75,6 +75,7 @@ const CustomTabs = ({ city }) => {
           scrollButtons="auto"
         >
           <StyledTab label="Life Quality Score" />
+          <StyledTab label="Digital Globetrotter Guide" />
           <StyledTab label="Cost of Living" />
           {/* <StyledTab label="Taxation" /> */}
           <StyledTab label="Safety" />
@@ -86,32 +87,31 @@ const CustomTabs = ({ city }) => {
           {/* <StyledTab label="Outdoors" /> */}
           {/* <StyledTab label="On Living" /> */}
           <StyledTab label="Resume" />
-          <StyledTab label="Digital Globetrotter Guide" />
         </StyledTabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Tab0 city={city} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Tab1 city={city} />
+        <Tab7 city={city} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Tab2 city={city} />
+        <Tab1 city={city} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Tab3 city={city} />
+        <Tab2 city={city} />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <Tab4 city={city} />
+        <Tab3 city={city} />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <Tab5 city={city} />
+        <Tab4 city={city} />
       </TabPanel>
       <TabPanel value={value} index={6}>
-        <Tab6 city={city} />
+        <Tab5 city={city} />
       </TabPanel>
       <TabPanel value={value} index={7}>
-        <Tab7 city={city} />
+        <Tab6 city={city} />
       </TabPanel>
     </>
   );
