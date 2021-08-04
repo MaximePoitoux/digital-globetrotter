@@ -11,6 +11,7 @@ import Tab4 from "./Tab/Tab4";
 import Tab5 from "./Tab/Tab5";
 import Tab6 from "./Tab/Tab6";
 import Tab7 from "./Tab/Tab7";
+import Tab8 from "./Tab/Tab8";
 
 const StyledTabs = withStyles({
   indicator: {
@@ -78,7 +79,7 @@ const CustomTabs = ({ city }) => {
           <StyledTab label="Digital Globetrotter Guide" />
           <StyledTab label="Cost of Living" />
           {/* <StyledTab label="Taxation" /> */}
-          <StyledTab label="Safety" />
+          <StyledTab label="Culture" />
           <StyledTab label="Education" />
           {/* <StyledTab label="Visa" /> */}
           {/* <StyledTab label="People" /> */}
@@ -86,6 +87,7 @@ const CustomTabs = ({ city }) => {
           <StyledTab label="Climate" />
           {/* <StyledTab label="Outdoors" /> */}
           {/* <StyledTab label="On Living" /> */}
+          <StyledTab label="Safety" />
           <StyledTab label="Resume" />
         </StyledTabs>
       </AppBar>
@@ -99,7 +101,7 @@ const CustomTabs = ({ city }) => {
         <Tab1 city={city} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Tab2 city={city} />
+        <Tab8 city={city} />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <Tab3 city={city} />
@@ -111,6 +113,9 @@ const CustomTabs = ({ city }) => {
         <Tab5 city={city} />
       </TabPanel>
       <TabPanel value={value} index={7}>
+        <Tab2 city={city} />
+      </TabPanel>
+      <TabPanel value={value} index={8}>
         <Tab6 city={city} />
       </TabPanel>
     </>
