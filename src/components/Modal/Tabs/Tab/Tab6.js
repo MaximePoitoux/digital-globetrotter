@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
     textAlign: "justify",
   },
   resultContainer: {
-    background: "#ecf0f1",
+    background: "white",
     padding: "14px",
     lineHeight: "1.4em",
     borderRadius: "16px",

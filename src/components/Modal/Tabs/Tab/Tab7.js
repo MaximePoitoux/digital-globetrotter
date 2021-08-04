@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "*::-webkit-scrollbar-thumb": {
-      backgroundColor: "#ecf0f1",
+      backgroundColor: "white",
     },
   },
   digitalGlobetrotterGuideContainer: {
@@ -32,12 +32,16 @@ const useStyles = makeStyles(() => ({
     height: "500px",
   },
   elementContainer: {
+    background: "white",
     width: "95%",
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
     padding: "10px",
+    margin: "5px",
     fontSize: "0.8em",
+    borderRadius: "4px",
+    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
   },
   valueContainer: {
     display: "flex",
@@ -306,10 +310,7 @@ const Tab7 = ({ city }) => {
 
   return (
     <div className={classes.digitalGlobetrotterGuideContainer}>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1", marginTop: "10px" }}
-      >
+      <div className={classes.elementContainer}>
         <BiWorld
           style={{
             marginRight: "10px",
@@ -320,7 +321,7 @@ const Tab7 = ({ city }) => {
         Continent
         <div className={classes.valueContainer}>{getContinent(city)}</div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <IoFlag
           style={{
             marginRight: "10px",
@@ -331,10 +332,7 @@ const Tab7 = ({ city }) => {
         Country
         <div className={classes.valueContainer}>{getCountry(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <IoIosPeople
           style={{
             marginRight: "10px",
@@ -347,7 +345,7 @@ const Tab7 = ({ city }) => {
           {getPopulationSize(city)} people
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaWifi
           style={{
             marginRight: "10px",
@@ -360,10 +358,7 @@ const Tab7 = ({ city }) => {
           {getInternetSpeed(city)} Mbps
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <FaSmog
           style={{
             marginRight: "10px",
@@ -374,7 +369,7 @@ const Tab7 = ({ city }) => {
         Air quality
         <div className={classes.valueContainer}>{getAirQuality(city)}</div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <GiBroom
           style={{
             marginRight: "10px",
@@ -385,10 +380,7 @@ const Tab7 = ({ city }) => {
         Cleanliness
         <div className={classes.valueContainer}>{getCleanliness(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <IoWater
           style={{
             marginRight: "10px",
@@ -401,7 +393,7 @@ const Tab7 = ({ city }) => {
           {getDrinkingWaterQuality(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <CgTrees
           style={{
             marginRight: "10px",
@@ -412,10 +404,7 @@ const Tab7 = ({ city }) => {
         Urban greenery
         <div className={classes.valueContainer}>{getUrbanGreenery(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <HiSpeakerphone
           style={{
             marginRight: "10px",
@@ -426,7 +415,7 @@ const Tab7 = ({ city }) => {
         Spoken languages
         <div className={classes.valueContainer}>{getSpokenLanguages(city)}</div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <HiCurrencyDollar
           style={{
             marginRight: "10px",
@@ -437,10 +426,7 @@ const Tab7 = ({ city }) => {
         Currency
         <div className={classes.valueContainer}>{getCurrency(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <RiExchangeDollarFill
           style={{
             marginRight: "10px",
@@ -453,7 +439,7 @@ const Tab7 = ({ city }) => {
           {getCurrencyExchangeRate(city)} {getCurrency(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <BsPeopleFill
           style={{
             marginRight: "10px",
@@ -464,10 +450,7 @@ const Tab7 = ({ city }) => {
         GDP per capita
         <div className={classes.valueContainer}>{getGdpPerCapita(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <IoMan
           style={{
             marginRight: "10px",
@@ -480,7 +463,7 @@ const Tab7 = ({ city }) => {
           {getMedianAgeInCountry(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <GiLifeBar
           style={{
             marginRight: "10px",
@@ -493,10 +476,7 @@ const Tab7 = ({ city }) => {
           {getLifeExpectancyAtbirthInCountry(city)}
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <GiPistolGun
           style={{
             marginRight: "10px",
@@ -507,7 +487,7 @@ const Tab7 = ({ city }) => {
         Crime rate
         <div className={classes.valueContainer}>{getCrimeRate(city)}</div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <IoRocketSharp
           style={{
             marginRight: "10px",
@@ -518,10 +498,7 @@ const Tab7 = ({ city }) => {
         Total number of startups
         <div className={classes.valueContainer}>{getTotalStartups(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <BsLaptop
           style={{
             marginRight: "10px",
@@ -532,7 +509,7 @@ const Tab7 = ({ city }) => {
         Coworking spaces
         <div className={classes.valueContainer}>{getCoworkingSpaces(city)}</div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaTrafficLight
           style={{
             marginRight: "10px",
@@ -543,10 +520,7 @@ const Tab7 = ({ city }) => {
         Traffic handling
         <div className={classes.valueContainer}>{getTrafficHandling(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <MdLocalAirport
           style={{
             marginRight: "10px",
@@ -557,7 +531,7 @@ const Tab7 = ({ city }) => {
         Airport hub
         <div className={classes.valueContainer}>{getAirporthub(city)}</div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <GiAngelWings
           style={{
             marginRight: "10px",
@@ -570,10 +544,7 @@ const Tab7 = ({ city }) => {
           {getBusinessFreedom(city)}/100
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <GiTakeMyMoney
           style={{
             marginRight: "10px",
@@ -586,7 +557,7 @@ const Tab7 = ({ city }) => {
           {getFreedomFromCorruption(city)}/100
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <IoTime
           style={{
             marginRight: "10px",

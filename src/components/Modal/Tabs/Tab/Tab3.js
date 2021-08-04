@@ -13,12 +13,16 @@ const useStyles = makeStyles(() => ({
     whiteSpace: "nowrap",
   },
   elementContainer: {
-    width: "100%",
+    background: "white",
+    width: "95%",
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
     padding: "10px",
+    margin: "5px",
     fontSize: "0.8em",
+    borderRadius: "4px",
+    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
   },
   valueContainer: {
     display: "flex",
@@ -92,14 +96,11 @@ const Tab3 = ({ city }) => {
 
   return (
     <div className={classes.educationContainer}>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1", marginTop: "10px" }}
-      >
+      <div className={classes.elementContainer}>
         <FaSmile
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -108,11 +109,11 @@ const Tab3 = ({ city }) => {
           {convertPercentage(getPisaDetailHappiness(city))} %
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaThermometerHalf
           style={{
             marginRight: "10px",
-            fontSize: "1.3em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -121,14 +122,11 @@ const Tab3 = ({ city }) => {
           {getQualityOfUniversities(city)}
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <FaMedal
           style={{
             marginRight: "10px",
-            fontSize: "1.3em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -137,11 +135,11 @@ const Tab3 = ({ city }) => {
           {getUniversitiesBestRankedRank(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <GiPodium
           style={{
             marginRight: "10px",
-            fontSize: "1.5em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -153,14 +151,11 @@ const Tab3 = ({ city }) => {
         </div>
         <div className={classes.valueContainer}>{getPisaRanking(city)}</div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <FaUniversity
           style={{
             marginRight: "10px",
-            fontSize: "1.3em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />

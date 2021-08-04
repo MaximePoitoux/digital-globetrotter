@@ -5,7 +5,7 @@ import { GiGunshot } from "react-icons/gi";
 const useStyles = makeStyles({
   safetyContainer: {
     borderRadius: "16px",
-    background: "#ecf0f1",
+    background: "white",
     margin: "12px",
   },
   safetySubContainer: {

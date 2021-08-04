@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: 600,
     minHeight: "710px",
     maxHeight: "710px",
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#ecf0f1",
     boxShadow: theme.shadows[5],
     // padding: theme.spacing(2, 4, 3),
     borderRadius: "5px 5px 5px 5px",

@@ -13,19 +13,36 @@ import { AiFillLike } from "react-icons/ai";
 import { FaFistRaised } from "react-icons/fa";
 
 const useStyles = makeStyles(() => ({
+  "@global": {
+    "*::-webkit-scrollbar": {
+      width: "0.3em",
+    },
+    "*::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+    },
+    "*::-webkit-scrollbar-thumb": {
+      backgroundColor: "white",
+    },
+  },
   lgbtContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    overflow: "auto",
     whiteSpace: "nowrap",
+    height: "500px",
   },
   elementContainer: {
-    width: "100%",
+    background: "white",
+    width: "95%",
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
     padding: "10px",
+    margin: "5px",
     fontSize: "0.8em",
+    borderRadius: "4px",
+    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
   },
   valueContainer: {
     display: "flex",
@@ -33,6 +50,7 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     fontWeight: "bold",
     color: "#e17055",
+    fontSize: "0.8em",
   },
 }));
 
@@ -169,14 +187,11 @@ const Tab4 = ({ city }) => {
 
   return (
     <div className={classes.lgbtContainer}>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1", marginTop: "10px" }}
-      >
+      <div className={classes.elementContainer}>
         <FaBaby
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -185,11 +200,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailAdoption(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaHandshake
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -198,14 +213,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailAgeOfConsent(city)}
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <FaTransgenderAlt
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -214,11 +226,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailChangingGender(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <RiPsychotherapyFill
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -227,14 +239,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailConversionTherapy(city)}
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <FaNotEqual
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -243,11 +252,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailDiscrimination(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <BiDonateBlood
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -256,14 +265,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailDonatingBlood(city)}
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <MdWork
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -272,11 +278,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailEmploymentDiscrimination(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaBalanceScale
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -285,14 +291,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailHomosexuality(city)}
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <BsFillHouseFill
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -301,11 +304,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailHousingDiscrimination(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <GiBigDiamondRing
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -314,14 +317,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailMarriage(city)}
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <AiFillLike
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -335,11 +335,11 @@ const Tab4 = ({ city }) => {
           {getLgbtDetailOpinionPercentInFavor(city)}
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaFistRaised
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />

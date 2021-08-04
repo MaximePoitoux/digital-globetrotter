@@ -14,12 +14,16 @@ const useStyles = makeStyles(() => ({
     whiteSpace: "nowrap",
   },
   elementContainer: {
-    width: "100%",
+    background: "white",
+    width: "95%",
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
     padding: "10px",
+    margin: "5px",
     fontSize: "0.8em",
+    borderRadius: "4px",
+    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
   },
   valueContainer: {
     display: "flex",
@@ -98,10 +102,7 @@ const Tab5 = ({ city }) => {
 
   return (
     <div className={classes.climateContainer}>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1", marginTop: "10px" }}
-      >
+      <div className={classes.elementContainer}>
         <BiTimeFive
           style={{
             marginRight: "10px",
@@ -114,7 +115,7 @@ const Tab5 = ({ city }) => {
           {getWeatherAverageDayLength(city)} H
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaTemperatureHigh
           style={{
             marginRight: "10px",
@@ -127,10 +128,7 @@ const Tab5 = ({ city }) => {
           {getWeatherAverageHigh(city)} °C
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <FaTemperatureLow
           style={{
             marginRight: "10px",
@@ -143,7 +141,7 @@ const Tab5 = ({ city }) => {
           {getWeatherAverageLow(city)} °C
         </div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <FaSun
           style={{
             marginRight: "10px",
@@ -156,10 +154,7 @@ const Tab5 = ({ city }) => {
           {getWeatherSunshineAmount(city)} Mj/m²
         </div>
       </div>
-      <div
-        className={classes.elementContainer}
-        style={{ background: "#ecf0f1" }}
-      >
+      <div className={classes.elementContainer}>
         <FaCloudSunRain
           style={{
             marginRight: "10px",
@@ -170,7 +165,7 @@ const Tab5 = ({ city }) => {
         Weather type
         <div className={classes.valueContainer}>{getWeatherType(city)}</div>
       </div>
-      <div className={classes.elementContainer} style={{ background: "white" }}>
+      <div className={classes.elementContainer}>
         <IoRainySharp
           style={{
             marginRight: "10px",

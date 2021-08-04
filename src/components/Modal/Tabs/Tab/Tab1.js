@@ -19,7 +19,7 @@ const useStyles = makeStyles({
       "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
     },
     "*::-webkit-scrollbar-thumb": {
-      backgroundColor: "#ecf0f1",
+      backgroundColor: "white",
     },
   },
   costOfLivingContainer: {
@@ -31,15 +31,16 @@ const useStyles = makeStyles({
     height: "500px",
   },
   elementContainer: {
-    background: "#ecf0f1",
-    borderRadius: "16px",
-    width: "85%",
+    background: "white",
+    width: "95%",
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
-    marginTop: "10px",
     padding: "10px",
+    margin: "5px",
     fontSize: "0.8em",
+    borderRadius: "4px",
+    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
   },
   priceContainer: {
     display: "flex",
@@ -179,7 +180,7 @@ const Tab1 = ({ city }) => {
         <BsFillHouseFill
           style={{
             marginRight: "10px",
-            fontSize: "1.3em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -192,7 +193,7 @@ const Tab1 = ({ city }) => {
         <BsFillHouseFill
           style={{
             marginRight: "10px",
-            fontSize: "1.3em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -205,7 +206,7 @@ const Tab1 = ({ city }) => {
         <BsFillHouseFill
           style={{
             marginRight: "10px",
-            fontSize: "1.3em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -229,7 +230,7 @@ const Tab1 = ({ city }) => {
         <IoIosFitness
           style={{
             marginRight: "10px",
-            fontSize: "1.7em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -240,7 +241,7 @@ const Tab1 = ({ city }) => {
         <FaBus
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -253,7 +254,7 @@ const Tab1 = ({ city }) => {
         <FaTaxi
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -264,7 +265,7 @@ const Tab1 = ({ city }) => {
         <FaHamburger
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -288,7 +289,7 @@ const Tab1 = ({ city }) => {
         <FaCoffee
           style={{
             marginRight: "10px",
-            fontSize: "1.1em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
@@ -310,7 +311,7 @@ const Tab1 = ({ city }) => {
         <FaAppleAlt
           style={{
             marginRight: "10px",
-            fontSize: "1.2em",
+            fontSize: "1.4em",
             minWidth: "40px",
           }}
         />
