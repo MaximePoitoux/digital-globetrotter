@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AiFillHome, AiFillHeart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   headerContainer: {
@@ -24,12 +25,21 @@ const Header = () => {
 
   return (
     <div className={classes.headerContainer}>
+      <img
+        src={logo}
+        alt="logo"
+        style={{
+          height: "200px",
+          width: "auto",
+        }}
+      />{" "}
+      Digital Globetrotter
       <NavLink
         className={classes.link}
         to="/cities"
         activeStyle={{
           fontWeight: "bold",
-          color: "#00b894",
+          color: "#eb4d4b",
         }}
       >
         <AiFillHome style={{ marginRight: 4 }} />
@@ -40,7 +50,7 @@ const Header = () => {
         to="/favorites"
         activeStyle={{
           fontWeight: "bold",
-          color: "#00b894",
+          color: "#eb4d4b",
         }}
       >
         <AiFillHeart style={{ marginRight: 4 }} />
