@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
     whiteSpace: "nowrap",
+    overflowX: "hidden",
   },
   elementContainer: {
     background: "white",

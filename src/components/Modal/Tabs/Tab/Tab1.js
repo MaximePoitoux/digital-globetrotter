@@ -29,6 +29,7 @@ const useStyles = makeStyles({
     overflow: "auto",
     whiteSpace: "nowrap",
     height: "500px",
+    overflowX: "hidden",
   },
   elementContainer: {
     background: "white",
