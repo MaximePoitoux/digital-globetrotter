@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AiFillHome, AiFillHeart } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+// import { AiFillHome, AiFillHeart } from "react-icons/ai";
+// import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import video from "../../assets/videos/intro.mp4";
 
