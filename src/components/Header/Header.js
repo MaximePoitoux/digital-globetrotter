@@ -7,6 +7,8 @@ import video from "../../assets/videos/intro.mp4";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
+import Searchbar from "../Searchbar/Searchbar";
+
 // https://medium.com/@BoltAssaults/autoplay-muted-html5-video-safari-ios-10-in-react-673ae50ba1f5
 
 const useStyles = makeStyles((theme) => ({
@@ -123,6 +125,7 @@ const Header = () => {
           </NavLink>
         </MenuItem>
       </Menu>
+      <Searchbar />
     </div>
   );
 };
