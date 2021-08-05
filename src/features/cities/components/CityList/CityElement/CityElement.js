@@ -41,10 +41,12 @@ const useStyles = makeStyles({
   },
   cityName: {
     fontWeight: "bold",
+    textShadow: "1px 2px 2px black",
   },
   countryName: {
     fontWeight: "bold",
     fontSize: "1.2em",
+    textShadow: "1px 2px 2px black",
   },
   iconCloseContainer: {
     position: "absolute",

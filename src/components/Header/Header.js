@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import { AiFillHome, AiFillHeart } from "react-icons/ai";
-// import { NavLink } from "react-router-dom";
+import { AiFillHome, AiFillHeart } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import video from "../../assets/videos/intro.mp4";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+
+// https://medium.com/@BoltAssaults/autoplay-muted-html5-video-safari-ios-10-in-react-673ae50ba1f5
 
 const useStyles = makeStyles((theme) => ({
   headerContainer: {
@@ -34,44 +38,31 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "1.7em",
   },
+  logo: {
+    height: "60px",
+    width: "auto",
+    filter: "drop-shadow(0 0 0.5rem black)",
+    "&:hover": {
+      opacity: 0.8,
+    },
+  },
 }));
 
 const Header = () => {
   const classes = useStyles();
 
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className={classes.headerContainer}>
-      {/* <img
-        src={logo}
-        alt="logo"
-        style={{
-          height: "200px",
-          width: "auto",
-        }}
-      />
-      Digital Globetrotter
-      <NavLink
-        className={classes.link}
-        to="/cities"
-        activeStyle={{
-          fontWeight: "bold",
-          color: "#eb4d4b",
-        }}
-      >
-        <AiFillHome style={{ marginRight: 4 }} />
-        Cities
-      </NavLink>
-      <NavLink
-        className={classes.link}
-        to="/favorites"
-        activeStyle={{
-          fontWeight: "bold",
-          color: "#eb4d4b",
-        }}
-      >
-        <AiFillHeart style={{ marginRight: 4 }} />
-        Favorites
-      </NavLink> */}
       <video
         style={{
           objectFit: "cover",
@@ -86,20 +77,52 @@ const Header = () => {
         muted
         loop
       />
-      <div className={classes.logoContainer}>
-        <img
-          src={logo}
-          alt="logo"
-          style={{
-            height: "60px",
-            width: "auto",
-            filter: "drop-shadow(0 0 0.5rem black)",
-          }}
-        />
+      <div
+        style={{ cursor: "pointer" }}
+        className={classes.logoContainer}
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        <img className={classes.logo} src={logo} alt="logo" />
         <p style={{ marginLeft: "20px", letterSpacing: "0.06em" }}>
           Digital<br></br>Globetrotter
         </p>
       </div>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>
+          <NavLink
+            className={classes.link}
+            to="/cities"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "#eb4d4b",
+            }}
+          >
+            <AiFillHome style={{ marginRight: 6 }} />
+            Cities
+          </NavLink>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <NavLink
+            className={classes.link}
+            to="/favorites"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "#eb4d4b",
+            }}
+          >
+            <AiFillHeart style={{ marginRight: 6 }} />
+            Favorites
+          </NavLink>
+        </MenuItem>
+      </Menu>
     </div>
   );
 };
