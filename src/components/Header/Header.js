@@ -81,7 +81,7 @@ const Header = () => {
         height="500px"
         src={video}
         // controls="controls"
-        autoPlay
+        autoPlay={true}
         muted
         loop
       />
