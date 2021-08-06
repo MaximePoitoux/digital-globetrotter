@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const CityModal = ({ city, openModal, handleClose }) => {
   const classes = useStyles();
 
-  console.log(city);
+  // console.log(city);
 
   return (
     <Modal

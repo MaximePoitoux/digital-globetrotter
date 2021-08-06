@@ -3,6 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+import { FaSortAmountUp, FaSortAmountDownAlt } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#ee5253",
     },
-    marginRight: theme.spacing(2),
+    // marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
@@ -47,7 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Searchbar = () => {
+const Searchbar = ({
+  sortCitiesByScoreDescending,
+  sortCitiesByScoreAscending,
+}) => {
   const classes = useStyles();
 
   return (
@@ -77,6 +81,28 @@ const Searchbar = () => {
               }}
               inputProps={{ "aria-label": "search" }}
             />
+          </div>
+          <div
+            className={classes.search}
+            style={{
+              cursor: "pointer",
+              width: "5ch",
+              justifyContent: "center",
+            }}
+            onClick={sortCitiesByScoreDescending}
+          >
+            <FaSortAmountUp style={{ fontSize: "1.2em" }} />
+          </div>
+          <div
+            className={classes.search}
+            style={{
+              cursor: "pointer",
+              width: "5ch",
+              justifyContent: "center",
+            }}
+            onClick={sortCitiesByScoreAscending}
+          >
+            <FaSortAmountDownAlt style={{ fontSize: "1.2em" }} />
           </div>
         </Toolbar>
       </AppBar>

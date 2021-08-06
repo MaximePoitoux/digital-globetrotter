@@ -19,13 +19,53 @@ const App = () => {
       apiCities
         .get()
         .then((res) => res.data._embedded["ua:item"])
-        .then((cities) => updateCities(sortCitiesByScore(cities)))
+        .then((cities) => updateCities(sortCitiesByScoreDefault(cities)))
         .catch((err) => console.log(err));
 
     fecthCities();
     console.log(cities);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Méthode qui permet de modifier le state cities
+  const updateCities = (cities) => {
+    setCities(cities);
+    setLoaded(favorites ? true : false);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales lors de l'initialisation
+  const sortCitiesByScoreDefault = (cities) => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) => e._embedded["ua:scores"].teleport_city_score;
+    const byScore = sortByMapped(toScore, byValue);
+    return [...cities].sort(byScore);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales
+  const sortCitiesByScoreDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) => e._embedded["ua:scores"].teleport_city_score;
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre croissant les villes en fonction de leurs scores générales
+  const sortCitiesByScoreAscending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => a - b;
+    const toScore = (e) => e._embedded["ua:scores"].teleport_city_score;
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
 
   const [favorites, setFavorites] = useState([]);
   useEffect(() => {
@@ -41,46 +81,11 @@ const App = () => {
   }, []);
 
   const [loaded, setLoaded] = useState(false);
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     cities: null,
-  //     favorites: null,
-  //     loaded: false,
-  //   };
-  // }
-
-  // Méthode qui permet de modifier le state cities
-  const updateCities = (cities) => {
-    setCities(cities);
-    setLoaded(favorites ? true : false);
-
-    // this.setState({
-    //   cities,
-    //   loaded: this.state.favorites ? true : false,
-    // });
-  };
 
   // Méthode qui permet de modifier le state favorites
   const updateFavorites = (favorites) => {
     setFavorites(favorites);
     setLoaded(cities ? true : false);
-
-    // this.setState({
-    //   favorites,
-    //   loaded: this.state.cities ? true : false,
-    // });
-  };
-
-  // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales
-  const sortCitiesByScore = (cities) => {
-    const sortByMapped = (map, compareFn) => (a, b) =>
-      compareFn(map(a), map(b));
-    const byValue = (a, b) => b - a;
-    const toScore = (e) => e._embedded["ua:scores"].teleport_city_score;
-    const byScore = sortByMapped(toScore, byValue);
-    return [...cities].sort(byScore);
   };
 
   // Méthode qui permet d'ajouter une ville en favoris
@@ -90,15 +95,6 @@ const App = () => {
     newFavorites.push(newCities);
 
     setFavorites(newFavorites);
-
-    // this.setState(
-    //   {
-    //     favorites,
-    //   },
-    //   () => {
-    //     saveFavorites();
-    //   }
-    // );
   };
 
   // Méthode qui permet de supprimer une ville des favoris
@@ -108,15 +104,6 @@ const App = () => {
     newFavorites.splice(index, 1);
 
     setFavorites(newFavorites);
-
-    // this.setState(
-    //   {
-    //     favorites,
-    //   },
-    //   () => {
-    //     this.saveFavorites();
-    //   }
-    // );
   };
 
   // const saveFavorites = () => {
@@ -131,9 +118,6 @@ const App = () => {
 
     // 4 => Modifie mon state en remplaçant l'ancien tableau par le niveau
     setCities(newCities);
-    // this.setState({
-    //   cities,
-    // });
   };
 
   return (
@@ -151,6 +135,8 @@ const App = () => {
                 addFavorite={addFavorite}
                 removeFavorite={removeFavorite}
                 removeCity={removeCity}
+                sortCitiesByScoreDescending={sortCitiesByScoreDescending}
+                sortCitiesByScoreAscending={sortCitiesByScoreAscending}
               />
             );
           }}

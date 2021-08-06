@@ -50,7 +50,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({
+  cities,
+  sortCitiesByScoreDescending,
+  sortCitiesByScoreAscending,
+}) => {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -74,7 +78,7 @@ const Header = () => {
         height="500px"
         src={video}
         // controls="controls"
-        playsinline
+        playsInline
         autoPlay
         muted
         loop
@@ -125,7 +129,10 @@ const Header = () => {
           </NavLink>
         </MenuItem>
       </Menu>
-      <Searchbar />
+      <Searchbar
+        sortCitiesByScoreDescending={sortCitiesByScoreDescending}
+        sortCitiesByScoreAscending={sortCitiesByScoreAscending}
+      />
     </div>
   );
 };
