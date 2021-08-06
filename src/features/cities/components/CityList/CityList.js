@@ -12,20 +12,37 @@ const useStyles = makeStyles({
 
 const CityList = (props) => {
   const classes = useStyles();
-  const { cities, favorites, addFavorite, removeFavorite, removeCity } = props;
+  const {
+    cities,
+    favorites,
+    addFavorite,
+    removeFavorite,
+    removeCity,
+    searchCity,
+  } = props;
 
   return (
     <div className={classes.container}>
-      {cities.map((city, index) => (
-        <CityElement
-          key={city.ua_id}
-          city={city}
-          isFavorite={favorites.includes(city.ua_id)}
-          addFavorite={addFavorite}
-          removeFavorite={removeFavorite}
-          removeCity={removeCity}
-        />
-      ))}
+      {cities
+        .filter((city) => {
+          if (searchCity === "") {
+            return city;
+          } else if (
+            city.name.toLowerCase().includes(searchCity.toLowerCase())
+          ) {
+            return city;
+          }
+        })
+        .map((city, index) => (
+          <CityElement
+            key={city.ua_id}
+            city={city}
+            isFavorite={favorites.includes(city.ua_id)}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
+            removeCity={removeCity}
+          />
+        ))}
     </div>
   );
 };

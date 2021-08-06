@@ -23,15 +23,22 @@ const App = () => {
         .catch((err) => console.log(err));
 
     fecthCities();
-    console.log(cities);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Méthode qui permet de modifier le state cities
-  const updateCities = (cities) => {
-    setCities(cities);
-    setLoaded(favorites ? true : false);
-  };
+  const [favorites, setFavorites] = useState([]);
+  useEffect(() => {
+    const fetchFavorites = () =>
+      apiFirebase.get("favorites.json").then((res) => {
+        let favorites = res.data ? res.data : [];
+        updateFavorites(favorites);
+      });
+
+    fetchFavorites();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [loaded, setLoaded] = useState(false);
 
   // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales lors de l'initialisation
   const sortCitiesByScoreDefault = (cities) => {
@@ -67,20 +74,24 @@ const App = () => {
     setCities(result);
   };
 
-  const [favorites, setFavorites] = useState([]);
-  useEffect(() => {
-    const fetchFavorites = () =>
-      apiFirebase.get("favorites.json").then((res) => {
-        let favorites = res.data ? res.data : [];
-        updateFavorites(favorites);
-      });
+  const [searchCity, setSearchCity] = useState("");
 
-    fetchFavorites();
-    console.log(favorites);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Méthode qui permet de rechercher une ville
+  // const searchCity = (input) => {
+  //   const newCities = [...cities];
 
-  const [loaded, setLoaded] = useState(false);
+  //   const filtered = newCities.filter((city) => {
+  //     return city.name.toLowerCase().includes(input.toLowerCase());
+  //   });
+
+  //   setCities(filtered);
+  // };
+
+  // Méthode qui permet de modifier le state cities
+  const updateCities = (cities) => {
+    setCities(cities);
+    setLoaded(favorites ? true : false);
+  };
 
   // Méthode qui permet de modifier le state favorites
   const updateFavorites = (favorites) => {
@@ -120,6 +131,8 @@ const App = () => {
     setCities(newCities);
   };
 
+  console.log(cities);
+
   return (
     <Router>
       <Switch>
@@ -135,6 +148,8 @@ const App = () => {
                 addFavorite={addFavorite}
                 removeFavorite={removeFavorite}
                 removeCity={removeCity}
+                searchCity={searchCity}
+                setSearchCity={setSearchCity}
                 sortCitiesByScoreDescending={sortCitiesByScoreDescending}
                 sortCitiesByScoreAscending={sortCitiesByScoreAscending}
               />

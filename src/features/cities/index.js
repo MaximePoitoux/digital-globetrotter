@@ -10,6 +10,8 @@ const index = ({
   addFavorite,
   removeFavorite,
   removeCity,
+  searchCity,
+  setSearchCity,
   sortCitiesByScoreDescending,
   sortCitiesByScoreAscending,
 }) => {
@@ -18,10 +20,12 @@ const index = ({
       {loaded ? (
         <>
           <Header
+            setSearchCity={setSearchCity}
             sortCitiesByScoreDescending={sortCitiesByScoreDescending}
             sortCitiesByScoreAscending={sortCitiesByScoreAscending}
           />
           <CityList
+            searchCity={searchCity}
             cities={cities}
             favorites={favorites.map((f) => f.ua_id)}
             addFavorite={addFavorite}

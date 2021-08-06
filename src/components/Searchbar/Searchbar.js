@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Searchbar = ({
+  setSearchCity,
   sortCitiesByScoreDescending,
   sortCitiesByScoreAscending,
 }) => {
@@ -79,6 +80,7 @@ const Searchbar = ({
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              onChange={(event) => setSearchCity(event.target.value)}
               inputProps={{ "aria-label": "search" }}
             />
           </div>

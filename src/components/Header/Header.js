@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = ({
-  cities,
+  setSearchCity,
   sortCitiesByScoreDescending,
   sortCitiesByScoreAscending,
 }) => {
@@ -130,6 +130,7 @@ const Header = ({
         </MenuItem>
       </Menu>
       <Searchbar
+        setSearchCity={setSearchCity}
         sortCitiesByScoreDescending={sortCitiesByScoreDescending}
         sortCitiesByScoreAscending={sortCitiesByScoreAscending}
       />
