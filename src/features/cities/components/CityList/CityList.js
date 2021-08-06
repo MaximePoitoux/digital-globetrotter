@@ -24,6 +24,7 @@ const CityList = (props) => {
   return (
     <div className={classes.container}>
       {cities
+        /* eslint-disable-next-line */
         .filter((city) => {
           if (searchCity === "") {
             return city;
