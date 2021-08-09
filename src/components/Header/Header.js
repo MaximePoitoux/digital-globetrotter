@@ -54,6 +54,16 @@ const Header = ({
   setSearchCity,
   sortCitiesByScoreDescending,
   sortCitiesByScoreAscending,
+  sortCitiesByCostOfLifeDescending,
+  sortCitiesByHousingDescending,
+  sortCitiesBySafetyDescending,
+  sortCitiesByEducationDescending,
+  sortCitiesByEnvironmentalQualityDescending,
+  sortCitiesByEconomyDescending,
+  sortCitiesByCultureDescending,
+  sortCitiesByInternetAccessDescending,
+  sortCitiesByToleranceDescending,
+  sortCitiesByOutdoorsDescending,
 }) => {
   const classes = useStyles();
 
@@ -133,6 +143,20 @@ const Header = ({
         setSearchCity={setSearchCity}
         sortCitiesByScoreDescending={sortCitiesByScoreDescending}
         sortCitiesByScoreAscending={sortCitiesByScoreAscending}
+        sortCitiesByCostOfLifeDescending={sortCitiesByCostOfLifeDescending}
+        sortCitiesByHousingDescending={sortCitiesByHousingDescending}
+        sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
+        sortCitiesByEducationDescending={sortCitiesByEducationDescending}
+        sortCitiesByEnvironmentalQualityDescending={
+          sortCitiesByEnvironmentalQualityDescending
+        }
+        sortCitiesByEconomyDescending={sortCitiesByEconomyDescending}
+        sortCitiesByCultureDescending={sortCitiesByCultureDescending}
+        sortCitiesByInternetAccessDescending={
+          sortCitiesByInternetAccessDescending
+        }
+        sortCitiesByToleranceDescending={sortCitiesByToleranceDescending}
+        sortCitiesByOutdoorsDescending={sortCitiesByOutdoorsDescending}
       />
     </div>
   );

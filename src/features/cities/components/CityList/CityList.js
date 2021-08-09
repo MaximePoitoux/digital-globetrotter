@@ -10,16 +10,15 @@ const useStyles = makeStyles({
   },
 });
 
-const CityList = (props) => {
+const CityList = ({
+  cities,
+  favorites,
+  addFavorite,
+  removeFavorite,
+  removeCity,
+  searchCity,
+}) => {
   const classes = useStyles();
-  const {
-    cities,
-    favorites,
-    addFavorite,
-    removeFavorite,
-    removeCity,
-    searchCity,
-  } = props;
 
   return (
     <div className={classes.container}>

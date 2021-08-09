@@ -38,6 +38,7 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [searchCity, setSearchCity] = useState("");
   const [loaded, setLoaded] = useState(false);
 
   // Méthode qui permet de classer par ordre décroissant les villes en fonction de leurs scores générales lors de l'initialisation
@@ -74,7 +75,155 @@ const App = () => {
     setCities(result);
   };
 
-  const [searchCity, setSearchCity] = useState("");
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction du coût de la vie (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByCostOfLifeDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Cost of Living")
+        .map((costOfLiving) => costOfLiving.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction du logement (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByHousingDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Housing")
+        .map((housing) => housing.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de la sécurité (+ le pourcentage est important, mieux c'est)
+  const sortCitiesBySafetyDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Safety")
+        .map((safety) => safety.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de l'éducation (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByEducationDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Education")
+        .map((education) => education.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de la qualité de l'environnement (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByEnvironmentalQualityDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Environmental Quality")
+        .map((environmentalQuality) => environmentalQuality.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de l'économie (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByEconomyDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Economy")
+        .map((economy) => economy.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de la culture (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByCultureDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Leisure & Culture")
+        .map((culture) => culture.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de l'accès à internet (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByInternetAccessDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Internet Access")
+        .map((internetAccess) => internetAccess.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de la tolérance (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByToleranceDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Tolerance")
+        .map((tolerance) => tolerance.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction des activités qu'il y à faire à l'extérieur (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByOutdoorsDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Outdoors")
+        .map((outdoors) => outdoors.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
 
   // Méthode qui permet de rechercher une ville
   // const searchCity = (input) => {
@@ -152,6 +301,26 @@ const App = () => {
                 setSearchCity={setSearchCity}
                 sortCitiesByScoreDescending={sortCitiesByScoreDescending}
                 sortCitiesByScoreAscending={sortCitiesByScoreAscending}
+                sortCitiesByCostOfLifeDescending={
+                  sortCitiesByCostOfLifeDescending
+                }
+                sortCitiesByHousingDescending={sortCitiesByHousingDescending}
+                sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
+                sortCitiesByEducationDescending={
+                  sortCitiesByEducationDescending
+                }
+                sortCitiesByEnvironmentalQualityDescending={
+                  sortCitiesByEnvironmentalQualityDescending
+                }
+                sortCitiesByEconomyDescending={sortCitiesByEconomyDescending}
+                sortCitiesByCultureDescending={sortCitiesByCultureDescending}
+                sortCitiesByInternetAccessDescending={
+                  sortCitiesByInternetAccessDescending
+                }
+                sortCitiesByToleranceDescending={
+                  sortCitiesByToleranceDescending
+                }
+                sortCitiesByOutdoorsDescending={sortCitiesByOutdoorsDescending}
               />
             );
           }}
