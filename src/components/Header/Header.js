@@ -57,9 +57,11 @@ const Header = ({
   sortCitiesByCostOfLifeDescending,
   sortCitiesByHousingDescending,
   sortCitiesBySafetyDescending,
+  sortCitiesByHealthcareDescending,
   sortCitiesByEducationDescending,
   sortCitiesByEnvironmentalQualityDescending,
   sortCitiesByEconomyDescending,
+  sortCitiesByBusinessFreedomDescending,
   sortCitiesByCultureDescending,
   sortCitiesByInternetAccessDescending,
   sortCitiesByToleranceDescending,
@@ -146,11 +148,15 @@ const Header = ({
         sortCitiesByCostOfLifeDescending={sortCitiesByCostOfLifeDescending}
         sortCitiesByHousingDescending={sortCitiesByHousingDescending}
         sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
+        sortCitiesByHealthcareDescending={sortCitiesByHealthcareDescending}
         sortCitiesByEducationDescending={sortCitiesByEducationDescending}
         sortCitiesByEnvironmentalQualityDescending={
           sortCitiesByEnvironmentalQualityDescending
         }
         sortCitiesByEconomyDescending={sortCitiesByEconomyDescending}
+        sortCitiesByBusinessFreedomDescending={
+          sortCitiesByBusinessFreedomDescending
+        }
         sortCitiesByCultureDescending={sortCitiesByCultureDescending}
         sortCitiesByInternetAccessDescending={
           sortCitiesByInternetAccessDescending

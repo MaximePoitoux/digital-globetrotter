@@ -120,6 +120,21 @@ const App = () => {
     setCities(result);
   };
 
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction des soins de santé (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByHealthcareDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Healthcare")
+        .map((healthcare) => healthcare.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
   // Méthode qui permet de classer par ordre décroissant les villes en fonction de l'éducation (+ le pourcentage est important, mieux c'est)
   const sortCitiesByEducationDescending = () => {
     const sortByMapped = (map, compareFn) => (a, b) =>
@@ -159,6 +174,21 @@ const App = () => {
       e._embedded["ua:scores"].categories
         .filter((category) => category.name === "Economy")
         .map((economy) => economy.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction de la liberté d'entreprise (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByBusinessFreedomDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Business Freedom")
+        .map((business) => business.score_out_of_10);
     const byScore = sortByMapped(toScore, byValue);
     const result = [...cities].sort(byScore);
 
@@ -306,6 +336,9 @@ const App = () => {
                 }
                 sortCitiesByHousingDescending={sortCitiesByHousingDescending}
                 sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
+                sortCitiesByHealthcareDescending={
+                  sortCitiesByHealthcareDescending
+                }
                 sortCitiesByEducationDescending={
                   sortCitiesByEducationDescending
                 }
@@ -313,6 +346,9 @@ const App = () => {
                   sortCitiesByEnvironmentalQualityDescending
                 }
                 sortCitiesByEconomyDescending={sortCitiesByEconomyDescending}
+                sortCitiesByBusinessFreedomDescending={
+                  sortCitiesByBusinessFreedomDescending
+                }
                 sortCitiesByCultureDescending={sortCitiesByCultureDescending}
                 sortCitiesByInternetAccessDescending={
                   sortCitiesByInternetAccessDescending

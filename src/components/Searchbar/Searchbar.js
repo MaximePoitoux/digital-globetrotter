@@ -4,11 +4,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
-// import { FaSortAmountUp, FaSortAmountDownAlt } from "react-icons/fa";
-// import { BsHouse } from "react-icons/bs";
-// import { BiDollar } from "react-icons/bi";
-// import { MdRefresh } from "react-icons/md";
-
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import TuneIcon from "@material-ui/icons/Tune";
@@ -18,6 +13,7 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
+import { MdRefresh } from "react-icons/md";
 
 const useStyles = makeStyles((theme) => ({
   searchbarContainer: {
@@ -46,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
+      // marginLeft: theme.spacing(3),
       width: "auto",
     },
   },
@@ -69,20 +65,22 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "40ch",
+      width: "30ch",
     },
   },
 }));
 
 const options = [
-  "Best Scores",
-  "Lower Scores",
-  "Better Quality of Life",
+  "High Scores",
+  "Low Scores",
+  "Best Cost of Living",
   "Best Housing",
   "Best Safety",
+  "Best Healthcare",
   "Best Education",
   "Best Environmental Quality",
   "Best Economy",
+  "Best Business Freedom",
   "Best Culture",
   "Best Internet Access",
   "Best Tolerance",
@@ -96,32 +94,20 @@ const Searchbar = ({
   sortCitiesByCostOfLifeDescending,
   sortCitiesByHousingDescending,
   sortCitiesBySafetyDescending,
+  sortCitiesByHealthcareDescending,
   sortCitiesByEducationDescending,
   sortCitiesByEnvironmentalQualityDescending,
   sortCitiesByEconomyDescending,
+  sortCitiesByBusinessFreedomDescending,
   sortCitiesByCultureDescending,
   sortCitiesByInternetAccessDescending,
   sortCitiesByToleranceDescending,
   sortCitiesByOutdoorsDescending,
 }) => {
   const classes = useStyles();
-  // const [filterCostOfLiving, setFilterCostOfLiving] = useState(false);
-
-  // const setTrue = () => {
-  //   if (filterCostOfLiving === true) {
-  //     return sortCitiesByCostOfLifeDescending;
-  //   } else if (filterCostOfLiving === false) {
-  //     return sortCitiesByScoreDescending;
-  //   }
-  // };
-
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const anchorRef = useRef(null);
-
-  const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
-  };
 
   const handleMenuItemClick = (event, index) => {
     if (index === 0) {
@@ -135,18 +121,22 @@ const Searchbar = ({
     } else if (index === 4) {
       sortCitiesBySafetyDescending();
     } else if (index === 5) {
-      sortCitiesByEducationDescending();
+      sortCitiesByHealthcareDescending();
     } else if (index === 6) {
-      sortCitiesByEnvironmentalQualityDescending();
+      sortCitiesByEducationDescending();
     } else if (index === 7) {
-      sortCitiesByEconomyDescending();
+      sortCitiesByEnvironmentalQualityDescending();
     } else if (index === 8) {
-      sortCitiesByCultureDescending();
+      sortCitiesByEconomyDescending();
     } else if (index === 9) {
-      sortCitiesByInternetAccessDescending();
+      sortCitiesByBusinessFreedomDescending();
     } else if (index === 10) {
-      sortCitiesByToleranceDescending();
+      sortCitiesByCultureDescending();
     } else if (index === 11) {
+      sortCitiesByInternetAccessDescending();
+    } else if (index === 12) {
+      sortCitiesByToleranceDescending();
+    } else if (index === 13) {
       sortCitiesByOutdoorsDescending();
     }
 
@@ -183,118 +173,90 @@ const Searchbar = ({
               onChange={(event) => setSearchCity(event.target.value)}
             />
           </div>
-          <ButtonGroup
-            variant="contained"
-            ref={anchorRef}
-            aria-label="split button"
-          >
-            <Button
-              style={{ background: "white", fontSize: "0.8em" }}
-              onClick={handleClick}
+          <div style={{ display: "flex" }}>
+            <ButtonGroup
+              variant="contained"
+              ref={anchorRef}
+              aria-label="split button"
+              style={{ height: "40px" }}
             >
-              {options[selectedIndex]}
-            </Button>
-            <Button
-              style={{
-                background: "#ee5253",
-                color: "white",
-              }}
-              size="small"
-              // aria-controls={open ? "split-button-menu" : undefined}
-              // aria-expanded={open ? "true" : undefined}
-              // aria-label="select merge strategy"
-              // aria-haspopup="menu"
-              onClick={handleToggle}
-            >
-              <TuneIcon />
-            </Button>
-          </ButtonGroup>
-          <Popper
-            open={open}
-            anchorEl={anchorRef.current}
-            role={undefined}
-            transition
-            disablePortal
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
+              <Button
                 style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom",
+                  background: "white",
+                  fontSize: "0.8em",
+                  color: "black",
                 }}
+                disabled
               >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList>
-                      {options.map((option, index) => (
-                        <MenuItem
-                          key={option}
-                          // disabled={index === 2}
-                          selected={index === selectedIndex}
-                          onClick={(event) => handleMenuItemClick(event, index)}
-                        >
-                          {option}
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-          {/* <div
-            className={classes.search}
-            style={{
-              cursor: "pointer",
-              width: "5ch",
-              justifyContent: "center",
-            }}
-            onClick={sortCitiesByScoreDescending}
-          >
-            <FaSortAmountUp style={{ fontSize: "1.2em" }} />
-          </div>
-          <div
-            className={classes.search}
-            style={{
-              cursor: "pointer",
-              width: "5ch",
-              justifyContent: "center",
-            }}
-            onClick={sortCitiesByScoreAscending}
-          >
-            <FaSortAmountDownAlt style={{ fontSize: "1.2em" }} />
-          </div>
-          <div
-            className={classes.search}
-            style={{
-              cursor: "pointer",
-              width: "5ch",
-              position: "relative",
-              justifyContent: "center",
-            }}
-            onClick={sortCitiesByCostOfLifeDescending}
-          >
-            <BsHouse style={{ fontSize: "1.7em" }} />
-            <BiDollar
+                {options[selectedIndex]}
+              </Button>
+              <Button
+                style={{
+                  background: "#ee5253",
+                  color: "white",
+                }}
+                size="small"
+                onClick={handleToggle}
+              >
+                <TuneIcon />
+              </Button>
+            </ButtonGroup>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    marginTop: "10px",
+                    height: "150px",
+                    overflow: "scroll",
+                    overflowX: "hidden",
+                    transformOrigin:
+                      placement === "bottom" ? "center top" : "center bottom",
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList>
+                        {options.map((option, index) => (
+                          <MenuItem
+                            key={option}
+                            selected={index === selectedIndex}
+                            onClick={(event) =>
+                              handleMenuItemClick(event, index)
+                            }
+                          >
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+            <div
+              className={classes.search}
               style={{
-                fontSize: "0.9em",
-                position: "absolute",
-                bottom: "11px",
+                marginLeft: "10px",
+                cursor: "pointer",
+                width: "40px",
+                justifyContent: "center",
               }}
-            />
+              onClick={() => {
+                setSelectedIndex(0);
+                setSearchCity("");
+                sortCitiesByScoreDescending();
+              }}
+            >
+              <MdRefresh style={{ fontSize: "1.7em" }} />
+            </div>
           </div>
-          <div
-            className={classes.search}
-            style={{
-              cursor: "pointer",
-              width: "5ch",
-              justifyContent: "center",
-            }}
-            onClick={sortCitiesByScoreDescending}
-          >
-            <MdRefresh style={{ fontSize: "1.7em" }} />
-          </div> */}
         </Toolbar>
       </AppBar>
     </div>
