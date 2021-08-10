@@ -75,6 +75,7 @@ const options = [
   "Low Scores",
   "Best Cost of Living",
   "Best Housing",
+  "Best Commute",
   "Best Safety",
   "Best Healthcare",
   "Best Education",
@@ -93,6 +94,7 @@ const Searchbar = ({
   sortCitiesByScoreAscending,
   sortCitiesByCostOfLifeDescending,
   sortCitiesByHousingDescending,
+  sortCitiesByCommuteDescending,
   sortCitiesBySafetyDescending,
   sortCitiesByHealthcareDescending,
   sortCitiesByEducationDescending,
@@ -119,24 +121,26 @@ const Searchbar = ({
     } else if (index === 3) {
       sortCitiesByHousingDescending();
     } else if (index === 4) {
-      sortCitiesBySafetyDescending();
+      sortCitiesByCommuteDescending();
     } else if (index === 5) {
-      sortCitiesByHealthcareDescending();
+      sortCitiesBySafetyDescending();
     } else if (index === 6) {
-      sortCitiesByEducationDescending();
+      sortCitiesByHealthcareDescending();
     } else if (index === 7) {
-      sortCitiesByEnvironmentalQualityDescending();
+      sortCitiesByEducationDescending();
     } else if (index === 8) {
-      sortCitiesByEconomyDescending();
+      sortCitiesByEnvironmentalQualityDescending();
     } else if (index === 9) {
-      sortCitiesByBusinessFreedomDescending();
+      sortCitiesByEconomyDescending();
     } else if (index === 10) {
-      sortCitiesByCultureDescending();
+      sortCitiesByBusinessFreedomDescending();
     } else if (index === 11) {
-      sortCitiesByInternetAccessDescending();
+      sortCitiesByCultureDescending();
     } else if (index === 12) {
-      sortCitiesByToleranceDescending();
+      sortCitiesByInternetAccessDescending();
     } else if (index === 13) {
+      sortCitiesByToleranceDescending();
+    } else if (index === 14) {
       sortCitiesByOutdoorsDescending();
     }
 

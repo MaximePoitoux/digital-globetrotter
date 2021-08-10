@@ -56,6 +56,7 @@ const Header = ({
   sortCitiesByScoreAscending,
   sortCitiesByCostOfLifeDescending,
   sortCitiesByHousingDescending,
+  sortCitiesByCommuteDescending,
   sortCitiesBySafetyDescending,
   sortCitiesByHealthcareDescending,
   sortCitiesByEducationDescending,
@@ -147,6 +148,7 @@ const Header = ({
         sortCitiesByScoreAscending={sortCitiesByScoreAscending}
         sortCitiesByCostOfLifeDescending={sortCitiesByCostOfLifeDescending}
         sortCitiesByHousingDescending={sortCitiesByHousingDescending}
+        sortCitiesByCommuteDescending={sortCitiesByCommuteDescending}
         sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
         sortCitiesByHealthcareDescending={sortCitiesByHealthcareDescending}
         sortCitiesByEducationDescending={sortCitiesByEducationDescending}

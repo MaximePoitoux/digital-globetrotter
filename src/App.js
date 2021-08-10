@@ -105,6 +105,21 @@ const App = () => {
     setCities(result);
   };
 
+  // Méthode qui permet de classer par ordre décroissant les villes en fonction des transports en commun (+ le pourcentage est important, mieux c'est)
+  const sortCitiesByCommuteDescending = () => {
+    const sortByMapped = (map, compareFn) => (a, b) =>
+      compareFn(map(a), map(b));
+    const byValue = (a, b) => b - a;
+    const toScore = (e) =>
+      e._embedded["ua:scores"].categories
+        .filter((category) => category.name === "Commute")
+        .map((commute) => commute.score_out_of_10);
+    const byScore = sortByMapped(toScore, byValue);
+    const result = [...cities].sort(byScore);
+
+    setCities(result);
+  };
+
   // Méthode qui permet de classer par ordre décroissant les villes en fonction de la sécurité (+ le pourcentage est important, mieux c'est)
   const sortCitiesBySafetyDescending = () => {
     const sortByMapped = (map, compareFn) => (a, b) =>
@@ -335,6 +350,7 @@ const App = () => {
                   sortCitiesByCostOfLifeDescending
                 }
                 sortCitiesByHousingDescending={sortCitiesByHousingDescending}
+                sortCitiesByCommuteDescending={sortCitiesByCommuteDescending}
                 sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
                 sortCitiesByHealthcareDescending={
                   sortCitiesByHealthcareDescending
