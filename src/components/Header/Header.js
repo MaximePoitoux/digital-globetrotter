@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AiFillHome, AiFillHeart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
@@ -80,6 +80,28 @@ const Header = ({
     setAnchorEl(null);
   };
 
+  const usePreview = (url) => {
+    const [canvas, setCanvas] = useState(null);
+
+    useEffect(() => {
+      const video = document.createElement("video");
+      video.src = url;
+      const onLoad = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        video.currentTime = 1;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(video, 0, 0);
+        setCanvas(canvas);
+      };
+      video.addEventListener("canplay", onLoad);
+      return () => video.removeEventListener("load", onLoad);
+    }, [url]);
+
+    return canvas;
+  };
+
   return (
     <div className={classes.headerContainer}>
       <video
@@ -95,6 +117,7 @@ const Header = ({
         autoPlay
         muted
         loop
+        poster={usePreview(video)}
       />
       <div
         style={{ cursor: "pointer" }}
