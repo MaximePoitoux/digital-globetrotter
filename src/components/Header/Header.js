@@ -83,7 +83,7 @@ const Header = ({
 
   return (
     <div className={classes.headerContainer}>
-      <LazyLoad>
+      <LazyLoad height={500}>
         <video
           style={{
             objectFit: "cover",
