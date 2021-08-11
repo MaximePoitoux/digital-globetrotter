@@ -42,7 +42,7 @@ const Index = ({
   const classes = useStyles();
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show button when page is scorlled upto given distance
+  // Show button when page is scrolled up to given distance
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);
