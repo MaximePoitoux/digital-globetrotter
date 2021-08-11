@@ -95,8 +95,9 @@ const Header = ({
         autoPlay
         muted
         loop
-        poster={video + "#t=0.1"}
-      />
+      >
+        <source data-src={video} type="video/mp4"></source>
+      </video>
       <div
         style={{ cursor: "pointer" }}
         className={classes.logoContainer}
