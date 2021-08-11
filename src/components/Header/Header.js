@@ -9,6 +9,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Searchbar from "../Searchbar/Searchbar";
 import LazyLoad from "react-lazyload";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 // https://medium.com/@BoltAssaults/autoplay-muted-html5-video-safari-ios-10-in-react-673ae50ba1f5
 
@@ -41,13 +42,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "1.7em",
   },
+  menuContainer: {
+    display: "flex",
+    "&:hover": {
+      opacity: 0.8,
+    },
+  },
   logo: {
     height: "60px",
     width: "auto",
     filter: "drop-shadow(0 0 0.5rem black)",
-    "&:hover": {
-      opacity: 0.8,
-    },
   },
 }));
 
@@ -106,7 +110,10 @@ const Header = ({
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <img className={classes.logo} src={logo} alt="logo" />
+        <div className={classes.menuContainer}>
+          <img className={classes.logo} src={logo} alt="logo" />
+          <ExpandMoreIcon style={{ alignSelf: "center", marginTop: "12px" }} />
+        </div>
         <p style={{ marginLeft: "20px", letterSpacing: "0.06em" }}>
           Digital<br></br>Globetrotter
         </p>

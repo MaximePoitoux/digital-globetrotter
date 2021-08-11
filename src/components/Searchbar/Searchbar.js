@@ -20,13 +20,18 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
     position: "absolute",
-    bottom: 20,
+    bottom: 30,
   },
   appBar: {
     background: "white",
-    width: "60%",
-    borderRadius: "30px",
+    width: "35%",
+    borderRadius: "4px",
+    marginRight: "40px",
+    // "&:hover": {
+    //   backgroundColor: "#ee5253",
+    // },
   },
   search: {
     height: "40px",
@@ -34,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     borderRadius: "30px",
-    backgroundColor: "rgba(238,82,83, 0.8)",
-    "&:hover": {
-      backgroundColor: "#ee5253",
-    },
+    backgroundColor: "white",
+    // "&:hover": {
+    //   backgroundColor: "#ee5253",
+    // },
     // marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
@@ -54,11 +59,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    color: "rgb(238, 82, 83)",
   },
   inputRoot: {
-    color: "inherit",
+    color: "rgb(238, 82, 83)",
   },
   inputInput: {
+    color: "rgb(238, 82, 83)",
+    fontWeight: "bold",
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
@@ -163,7 +171,7 @@ const Searchbar = ({
   return (
     <div className={classes.searchbarContainer}>
       <AppBar className={classes.appBar} position="static">
-        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar style={{ minHeight: 50, padding: 0 }}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -177,92 +185,94 @@ const Searchbar = ({
               onChange={(event) => setSearchCity(event.target.value)}
             />
           </div>
-          <div style={{ display: "flex" }}>
-            <ButtonGroup
-              variant="contained"
-              ref={anchorRef}
-              aria-label="split button"
-              style={{ height: "40px" }}
-            >
-              <Button
-                style={{
-                  background: "white",
-                  fontSize: "0.8em",
-                  color: "black",
-                }}
-                disabled
-              >
-                {options[selectedIndex]}
-              </Button>
-              <Button
-                style={{
-                  background: "#ee5253",
-                  color: "white",
-                }}
-                size="small"
-                onClick={handleToggle}
-              >
-                <TuneIcon />
-              </Button>
-            </ButtonGroup>
-            <Popper
-              open={open}
-              anchorEl={anchorRef.current}
-              role={undefined}
-              transition
-              disablePortal
-            >
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
-                  style={{
-                    marginTop: "10px",
-                    height: "150px",
-                    overflow: "scroll",
-                    overflowX: "hidden",
-                    transformOrigin:
-                      placement === "bottom" ? "center top" : "center bottom",
-                  }}
-                >
-                  <Paper>
-                    <ClickAwayListener onClickAway={handleClose}>
-                      <MenuList>
-                        {options.map((option, index) => (
-                          <MenuItem
-                            key={option}
-                            selected={index === selectedIndex}
-                            onClick={(event) =>
-                              handleMenuItemClick(event, index)
-                            }
-                          >
-                            {option}
-                          </MenuItem>
-                        ))}
-                      </MenuList>
-                    </ClickAwayListener>
-                  </Paper>
-                </Grow>
-              )}
-            </Popper>
-            <div
-              className={classes.search}
-              style={{
-                marginLeft: "10px",
-                cursor: "pointer",
-                width: "40px",
-                justifyContent: "center",
-              }}
-              onClick={() => {
-                setSelectedIndex(0);
-                setSearchCity("");
-                sortCitiesByScoreDescending();
-              }}
-            >
-              <MdRefresh style={{ fontSize: "1.7em" }} />
-            </div>
-          </div>
         </Toolbar>
       </AppBar>
+      <div style={{ display: "flex" }}>
+        <ButtonGroup
+          variant="contained"
+          ref={anchorRef}
+          aria-label="split button"
+          style={{ height: "50px" }}
+        >
+          <Button
+            style={{
+              background: "white",
+              fontSize: "0.8em",
+              color: "black",
+            }}
+            disabled
+          >
+            {options[selectedIndex]}
+          </Button>
+          <Button
+            style={{
+              background: "#ee5253",
+              color: "white",
+            }}
+            size="small"
+            onClick={handleToggle}
+          >
+            <TuneIcon />
+          </Button>
+        </ButtonGroup>
+        <Popper
+          style={{ zIndex: 2 }}
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                marginTop: "10px",
+                height: "150px",
+                overflow: "scroll",
+                overflowX: "hidden",
+                transformOrigin:
+                  placement === "bottom" ? "center top" : "center bottom",
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList>
+                    {options.map((option, index) => (
+                      <MenuItem
+                        key={option}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+        <div
+          className={classes.search}
+          style={{
+            marginLeft: "20px",
+            cursor: "pointer",
+            borderRadius: "4px",
+            width: "50px",
+            height: "50px",
+            justifyContent: "center",
+            background: "rgb(238, 82, 83)",
+          }}
+          onClick={() => {
+            setSelectedIndex(0);
+            setSearchCity("");
+            sortCitiesByScoreDescending();
+          }}
+        >
+          <MdRefresh style={{ fontSize: "1.8em", color: "white" }} />
+        </div>
+      </div>
     </div>
   );
 };
