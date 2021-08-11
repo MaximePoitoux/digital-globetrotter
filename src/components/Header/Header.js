@@ -3,12 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AiFillHome, AiFillHeart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import poster from "../../assets/images/poster.jpg";
+// import poster from "../../assets/images/poster.jpg";
 import video from "../../assets/videos/intro2.mp4";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-
 import Searchbar from "../Searchbar/Searchbar";
+import lozad from "lozad";
 
 // https://medium.com/@BoltAssaults/autoplay-muted-html5-video-safari-ios-10-in-react-673ae50ba1f5
 
@@ -84,13 +84,13 @@ const Header = ({
   return (
     <div className={classes.headerContainer}>
       <video
+        class={lozad}
         style={{
           objectFit: "cover",
           zIndex: "-100",
         }}
         width="100%"
         height="500px"
-        poster={poster}
         src={video}
         playsInline
         autoPlay
