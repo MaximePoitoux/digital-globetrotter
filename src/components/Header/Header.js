@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AiFillHome, AiFillHeart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import poster from "../../assets/videos/poster.jpg";
+import poster from "../../assets/images/poster.jpg";
 import video from "../../assets/videos/intro2.mp4";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
