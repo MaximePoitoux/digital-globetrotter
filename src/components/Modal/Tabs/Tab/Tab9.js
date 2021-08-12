@@ -87,6 +87,7 @@ const Tab9 = ({ city }) => {
           3
       );
 
+      // eslint-disable-next-line
       return options.push(job), salaryArray.push(medianSalary);
 
       // return (
@@ -160,7 +161,7 @@ const Tab9 = ({ city }) => {
             </Grow>
           )}
         </Popper>
-        {salary}
+        {salary + " $"}
       </>
     );
   };
