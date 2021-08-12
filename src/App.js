@@ -3,7 +3,7 @@ import "./App.css";
 import Cities from "./features/cities";
 import Favorites from "./features/favorites";
 import apiCities from "services/api/api.cities";
-import apiFirebase from "services/api/api.firebase";
+// import apiFirebase from "services/api/api.firebase";
 import {
   BrowserRouter as Router,
   Route,
@@ -27,16 +27,17 @@ const App = () => {
   }, []);
 
   const [favorites, setFavorites] = useState([]);
-  useEffect(() => {
-    const fetchFavorites = () =>
-      apiFirebase.get("favorites.json").then((res) => {
-        let favorites = res.data ? res.data : [];
-        updateFavorites(favorites);
-      });
+  // Permet de récupérer les favoris depuis FIREBASE
+  // useEffect(() => {
+  //   const fetchFavorites = () =>
+  //     apiFirebase.get("favorites.json").then((res) => {
+  //       let favorites = res.data ? res.data : [];
+  //       updateFavorites(favorites);
+  //     });
 
-    fetchFavorites();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   fetchFavorites();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const [searchCity, setSearchCity] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -270,28 +271,21 @@ const App = () => {
     setCities(result);
   };
 
-  // Méthode qui permet de rechercher une ville
-  // const searchCity = (input) => {
-  //   const newCities = [...cities];
-
-  //   const filtered = newCities.filter((city) => {
-  //     return city.name.toLowerCase().includes(input.toLowerCase());
-  //   });
-
-  //   setCities(filtered);
-  // };
-
   // Méthode qui permet de modifier le state cities
   const updateCities = (cities) => {
     setCities(cities);
     setLoaded(favorites ? true : false);
   };
 
-  // Méthode qui permet de modifier le state favorites
-  const updateFavorites = (favorites) => {
-    setFavorites(favorites);
-    setLoaded(cities ? true : false);
-  };
+  // Méthode qui permet de modifier le state favorites pour FIREBASE
+  // const updateFavorites = (favorites) => {
+  //   setFavorites(favorites);
+  //   setLoaded(cities ? true : false);
+  // };
+
+  // const saveFavorites = () => {
+  //   apiFirebase.put("favorites.json", favorites);
+  // };
 
   // Méthode qui permet d'ajouter une ville en favoris
   const addFavorite = (id) => {
@@ -310,10 +304,6 @@ const App = () => {
 
     setFavorites(newFavorites);
   };
-
-  // const saveFavorites = () => {
-  //   apiFirebase.put("favorites.json", favorites);
-  // };
 
   // Méthode qui permet de supprimer une ville de la liste des villes
   const removeCity = (id) => {

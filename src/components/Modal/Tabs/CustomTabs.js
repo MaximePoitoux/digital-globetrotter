@@ -12,6 +12,7 @@ import Tab5 from "./Tab/Tab5";
 import Tab6 from "./Tab/Tab6";
 import Tab7 from "./Tab/Tab7";
 import Tab8 from "./Tab/Tab8";
+import Tab9 from "./Tab/Tab9";
 
 const StyledTabs = withStyles({
   indicator: {
@@ -78,6 +79,7 @@ const CustomTabs = ({ city }) => {
           <StyledTab label="Life Quality Score" />
           <StyledTab label="Digital Globetrotter Guide" />
           <StyledTab label="Cost of Living" />
+          <StyledTab label="Salaries" />
           {/* <StyledTab label="Taxation" /> */}
           <StyledTab label="Culture" />
           <StyledTab label="Education" />
@@ -101,21 +103,24 @@ const CustomTabs = ({ city }) => {
         <Tab1 city={city} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Tab8 city={city} />
+        <Tab9 city={city} />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <Tab3 city={city} />
+        <Tab8 city={city} />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <Tab4 city={city} />
+        <Tab3 city={city} />
       </TabPanel>
       <TabPanel value={value} index={6}>
-        <Tab5 city={city} />
+        <Tab4 city={city} />
       </TabPanel>
       <TabPanel value={value} index={7}>
-        <Tab2 city={city} />
+        <Tab5 city={city} />
       </TabPanel>
       <TabPanel value={value} index={8}>
+        <Tab2 city={city} />
+      </TabPanel>
+      <TabPanel value={value} index={9}>
         <Tab6 city={city} />
       </TabPanel>
     </>
