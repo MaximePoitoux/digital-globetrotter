@@ -7,6 +7,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
+    marginTop: "10px",
   },
 });
 

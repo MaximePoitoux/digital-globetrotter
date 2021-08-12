@@ -13,13 +13,10 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 // https://medium.com/@BoltAssaults/autoplay-muted-html5-video-safari-ios-10-in-react-673ae50ba1f5
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   headerContainer: {
     position: "relative",
-    // display: "flex",
-    // justifyContent: "flex-end",
-    // alignItems: "center",
-    padding: "0px 0px 50px 0px",
+    // padding: "0px 0px 50px 0px",
   },
   link: {
     display: "flex",
@@ -34,16 +31,14 @@ const useStyles = makeStyles((theme) => ({
     top: "0",
     left: "0",
     display: "flex",
-    // justifyContent: "center",
     alignItems: "center",
-    // flexDirection: "column",
-    // alignItems: "center",
     color: "white",
     fontWeight: "bold",
     fontSize: "1.7em",
   },
   menuContainer: {
     display: "flex",
+    cursor: "pointer",
     "&:hover": {
       opacity: 0.8,
     },
@@ -52,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     height: "60px",
     width: "auto",
     filter: "drop-shadow(0 0 0.5rem black)",
+  },
+  logoTitle: {
+    marginLeft: "20px",
+    letterSpacing: "0.06em",
   },
 }));
 
@@ -74,7 +73,6 @@ const Header = ({
   sortCitiesByOutdoorsDescending,
 }) => {
   const classes = useStyles();
-
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -104,17 +102,15 @@ const Header = ({
         />
       </LazyLoad>
       <div
-        style={{ cursor: "pointer" }}
         className={classes.logoContainer}
         aria-controls="simple-menu"
         aria-haspopup="true"
-        onClick={handleClick}
       >
-        <div className={classes.menuContainer}>
+        <div className={classes.menuContainer} onClick={handleClick}>
           <img className={classes.logo} src={logo} alt="logo" />
           <ExpandMoreIcon style={{ alignSelf: "center", marginTop: "12px" }} />
         </div>
-        <p style={{ marginLeft: "20px", letterSpacing: "0.06em" }}>
+        <p className={classes.logoTitle}>
           Digital<br></br>Globetrotter
         </p>
       </div>

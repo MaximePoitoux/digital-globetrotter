@@ -24,34 +24,27 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     bottom: 30,
   },
-  appBar: {
+  subSearchbarContainer: {
     background: "white",
-    width: "35%",
+    width: "30%",
     borderRadius: "4px",
-    marginRight: "40px",
-    // "&:hover": {
-    //   backgroundColor: "#ee5253",
-    // },
+    marginRight: "20px",
   },
-  search: {
+  inputContainer: {
     height: "40px",
     position: "relative",
     display: "flex",
     alignItems: "center",
-    borderRadius: "30px",
-    backgroundColor: "white",
-    // "&:hover": {
-    //   backgroundColor: "#ee5253",
-    // },
-    // marginRight: theme.spacing(2),
-    marginLeft: 0,
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      // marginLeft: theme.spacing(3),
-      width: "auto",
-    },
   },
-  searchIcon: {
+  input: {
+    color: "black",
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+  },
+  searchIconContainer: {
     padding: theme.spacing(0, 2),
     height: "100%",
     position: "absolute",
@@ -61,20 +54,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     color: "rgb(238, 82, 83)",
   },
-  inputRoot: {
-    color: "rgb(238, 82, 83)",
-  },
-  inputInput: {
-    color: "rgb(238, 82, 83)",
-    fontWeight: "bold",
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "30ch",
-    },
+  refreshIconContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "20px",
+    cursor: "pointer",
+    borderRadius: "4px",
+    width: "50px",
+    height: "50px",
+    background: "rgb(238, 82, 83)",
   },
 }));
 
@@ -168,20 +157,23 @@ const Searchbar = ({
     setOpen(false);
   };
 
+  const resetFilter = () => {
+    setSelectedIndex(0);
+    setSearchCity("");
+    sortCitiesByScoreDescending();
+  };
+
   return (
     <div className={classes.searchbarContainer}>
-      <AppBar className={classes.appBar} position="static">
+      <AppBar className={classes.subSearchbarContainer} position="static">
         <Toolbar style={{ minHeight: 50, padding: 0 }}>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
+          <div className={classes.inputContainer}>
+            <div className={classes.searchIconContainer}>
               <SearchIcon />
             </div>
             <InputBase
               placeholder="Search a city ..."
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
+              className={classes.input}
               onChange={(event) => setSearchCity(event.target.value)}
             />
           </div>
@@ -253,24 +245,8 @@ const Searchbar = ({
             </Grow>
           )}
         </Popper>
-        <div
-          className={classes.search}
-          style={{
-            marginLeft: "20px",
-            cursor: "pointer",
-            borderRadius: "4px",
-            width: "50px",
-            height: "50px",
-            justifyContent: "center",
-            background: "rgb(238, 82, 83)",
-          }}
-          onClick={() => {
-            setSelectedIndex(0);
-            setSearchCity("");
-            sortCitiesByScoreDescending();
-          }}
-        >
-          <MdRefresh style={{ fontSize: "1.8em", color: "white" }} />
+        <div className={classes.refreshIconContainer} onClick={resetFilter}>
+          <MdRefresh style={{ fontSize: "1.6em", color: "white" }} />
         </div>
       </div>
     </div>
