@@ -21,6 +21,8 @@ import {
   WiHot,
 } from "weather-icons-react";
 
+import SnackbarCustom from "../../../../../components/Snackbar/Snackbar";
+
 const useStyles = makeStyles({
   card: {
     minWidth: 250,
@@ -98,21 +100,39 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CityElement(props) {
+export default function CityElement({
+  city,
+  isFavorite,
+  addFavorite,
+  removeFavorite,
+  removeCity,
+}) {
   const classes = useStyles();
   const [isShown, setIsShown] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
-  const { city, isFavorite, addFavorite, removeFavorite, removeCity } = props;
 
-  const handleMouseEnter = (e) => {
+  // Alert
+  const [openAlert, setOpenAlert] = useState(false);
+
+  const handleClickAlert = () => {
+    setOpenAlert(true);
+  };
+
+  const handleCloseAlert = (event, reason) => {
+    return setOpenAlert(false);
+  };
+
+  // Modal
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleMouseEnterCard = (e) => {
     return setIsShown(e.currentTarget.id);
   };
 
-  const handleOpen = () => {
+  const handleOpenModal = () => {
     setOpenModal(true);
   };
 
-  const handleClose = () => {
+  const handleCloseModal = () => {
     setOpenModal(false);
   };
 
@@ -281,8 +301,8 @@ export default function CityElement(props) {
   return (
     <>
       <Card
-        onClick={handleOpen}
-        onMouseEnter={handleMouseEnter}
+        onClick={handleOpenModal}
+        onMouseEnter={handleMouseEnterCard}
         onMouseLeave={() => setIsShown(null)}
         className={classes.card}
         id={city.ua_id}
@@ -304,6 +324,7 @@ export default function CityElement(props) {
                   className={classes.iconHeartContainer}
                   onClick={(event) => {
                     event.stopPropagation();
+                    handleClickAlert();
                     return removeFavorite(city.ua_id);
                   }}
                 >
@@ -314,6 +335,7 @@ export default function CityElement(props) {
                   className={classes.iconHeartContainer}
                   onClick={(event) => {
                     event.stopPropagation();
+                    handleClickAlert();
                     return addFavorite(city.ua_id);
                   }}
                 >
@@ -363,7 +385,17 @@ export default function CityElement(props) {
           </CardMedia>
         </CardActionArea>
       </Card>
-      <CityModal city={city} openModal={openModal} handleClose={handleClose} />
+      <CityModal
+        city={city}
+        openModal={openModal}
+        handleCloseModal={handleCloseModal}
+      />
+      <SnackbarCustom
+        isFavorite={isFavorite}
+        city={city.name}
+        openAlert={openAlert}
+        handleCloseAlert={handleCloseAlert}
+      />
     </>
   );
 }

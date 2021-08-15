@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CityModal = ({ city, openModal, handleClose }) => {
+const CityModal = ({ city, openModal, handleCloseModal }) => {
   const classes = useStyles();
 
   // console.log(city);
@@ -40,7 +40,7 @@ const CityModal = ({ city, openModal, handleClose }) => {
       aria-describedby="simple-modal-description"
       className={classes.modal}
       open={openModal}
-      onClose={handleClose}
+      onClose={handleCloseModal}
     >
       <Slide direction="up" in={openModal} mountOnEnter unmountOnExit>
         <div className={classes.paper}>
