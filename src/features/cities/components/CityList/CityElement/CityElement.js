@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CloseIcon from "@material-ui/icons/Close";
 import { FaWifi } from "react-icons/fa";
+import { useSnackbar } from "notistack";
 import {
   WiDaySunny,
   WiDayCloudy,
@@ -20,8 +21,6 @@ import {
   WiDaySnow,
   WiHot,
 } from "weather-icons-react";
-
-import SnackbarCustom from "../../../../../components/Snackbar/Snackbar";
 
 const useStyles = makeStyles({
   card: {
@@ -110,17 +109,6 @@ export default function CityElement({
   const classes = useStyles();
   const [isShown, setIsShown] = useState(null);
 
-  // Alert
-  const [openAlert, setOpenAlert] = useState(false);
-
-  const handleClickAlert = () => {
-    setOpenAlert(true);
-  };
-
-  const handleCloseAlert = (event, reason) => {
-    return setOpenAlert(false);
-  };
-
   // Modal
   const [openModal, setOpenModal] = useState(false);
 
@@ -134,6 +122,19 @@ export default function CityElement({
 
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  // Snackbar
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClickSnackbar = () => {
+    isFavorite
+      ? enqueueSnackbar(city.name + " was removed from your favorites", {
+          variant: "error",
+        })
+      : enqueueSnackbar(city.name + " has been added to your favorites", {
+          variant: "success",
+        });
   };
 
   const chooseClimateIcon = (climate) => {
@@ -324,7 +325,7 @@ export default function CityElement({
                   className={classes.iconHeartContainer}
                   onClick={(event) => {
                     event.stopPropagation();
-                    handleClickAlert();
+                    handleClickSnackbar();
                     return removeFavorite(city.ua_id);
                   }}
                 >
@@ -335,7 +336,7 @@ export default function CityElement({
                   className={classes.iconHeartContainer}
                   onClick={(event) => {
                     event.stopPropagation();
-                    handleClickAlert();
+                    handleClickSnackbar();
                     return addFavorite(city.ua_id);
                   }}
                 >
@@ -389,12 +390,6 @@ export default function CityElement({
         city={city}
         openModal={openModal}
         handleCloseModal={handleCloseModal}
-      />
-      <SnackbarCustom
-        isFavorite={isFavorite}
-        city={city.name}
-        openAlert={openAlert}
-        handleCloseAlert={handleCloseAlert}
       />
     </>
   );

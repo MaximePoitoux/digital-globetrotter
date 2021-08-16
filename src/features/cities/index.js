@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import Loading from "../../components/utils/Loading";
 import Fab from "@material-ui/core/Fab";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import { SnackbarProvider } from "notistack";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -65,7 +66,7 @@ const Index = ({
   }, []);
 
   return (
-    <>
+    <SnackbarProvider maxSnack={3}>
       {loaded ? (
         <>
           <Header
@@ -113,7 +114,7 @@ const Index = ({
       ) : (
         <Loading />
       )}
-    </>
+    </SnackbarProvider>
   );
 };
 

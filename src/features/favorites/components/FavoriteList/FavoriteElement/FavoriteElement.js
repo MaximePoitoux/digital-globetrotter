@@ -104,11 +104,11 @@ export default function FavoriteElement(props) {
     return setIsShown(e.currentTarget.id);
   };
 
-  const handleOpen = () => {
+  const handleOpenModal = () => {
     setOpenModal(true);
   };
 
-  const handleClose = () => {
+  const handleCloseModal = () => {
     setOpenModal(false);
   };
 
@@ -277,7 +277,7 @@ export default function FavoriteElement(props) {
   return (
     <>
       <Card
-        onClick={handleOpen}
+        onClick={handleOpenModal}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsShown(null)}
         className={classes.card}
@@ -339,7 +339,7 @@ export default function FavoriteElement(props) {
       <CityModal
         city={favorites}
         openModal={openModal}
-        handleClose={handleClose}
+        handleCloseModal={handleCloseModal}
       />
     </>
   );
