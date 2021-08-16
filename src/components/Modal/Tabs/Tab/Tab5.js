@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
     overflowX: "hidden",
   },
   elementContainer: {
+    minHeight: "20px",
     background: "white",
     width: "95%",
     display: "flex",
