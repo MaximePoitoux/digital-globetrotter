@@ -10,6 +10,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Searchbar from "../Searchbar/Searchbar";
 import LazyLoad from "react-lazyload";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Connexion from "../Connexion/Connexion";
 
 // https://medium.com/@BoltAssaults/autoplay-muted-html5-video-safari-ios-10-in-react-673ae50ba1f5
 
@@ -35,6 +38,13 @@ const useStyles = makeStyles(() => ({
     color: "white",
     fontWeight: "bold",
     fontSize: "1.7em",
+  },
+  loginContainer: {
+    padding: "10px 20px",
+    position: "absolute",
+    top: "0",
+    right: "0",
+    filter: "drop-shadow(0 0 1rem black)",
   },
   menuContainer: {
     display: "flex",
@@ -81,6 +91,16 @@ const Header = ({
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -148,6 +168,18 @@ const Header = ({
           </NavLink>
         </MenuItem>
       </Menu>
+      <div className={classes.loginContainer}>
+        <IconButton onClick={handleOpenModal}>
+          <AccountCircleIcon
+            style={{
+              color: "rgb(238, 82, 83)",
+              fontSize: "1.8em",
+              zIndex: 5,
+            }}
+          />
+        </IconButton>
+      </div>
+      <Connexion openModal={openModal} handleCloseModal={handleCloseModal} />
       <Searchbar
         setSearchCity={setSearchCity}
         sortCitiesByScoreDescending={sortCitiesByScoreDescending}
