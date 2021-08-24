@@ -4,6 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Login from "./Login/Login";
+import Signup from "./Signup/Signup";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -12,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   paper: {
-    height: "400px",
-    width: "350px",
+    height: "460px",
+    width: "400px",
     backgroundColor: theme.palette.background.paper,
     // border: "2px solid #000",
     borderRadius: "4px",
@@ -41,7 +42,7 @@ const ModalConnexion = ({ openModal, handleCloseModal }) => {
       >
         <Fade in={openModal}>
           <div className={classes.paper}>
-            <Login />
+            <Signup />
           </div>
         </Fade>
       </Modal>
