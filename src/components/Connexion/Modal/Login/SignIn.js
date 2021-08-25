@@ -1,4 +1,9 @@
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { makeStyles } from "@material-ui/core/styles";
 import {
+  Grid,
+  Avatar,
   Button,
   Checkbox,
   FormControlLabel,
@@ -6,9 +11,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { makeStyles } from "@material-ui/core/styles";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 const useStyles = makeStyles(() => ({
   errorMessage: {
@@ -16,31 +19,39 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Login = () => {
+const SignIn = ({ handleChange }) => {
   const classes = useStyles();
 
   const initialValues = {
-    username: "",
+    email: "",
     password: "",
     remember: false,
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string()
-      .email("Please enter valid email")
-      .required("Required"),
+    email: Yup.string().email("Please enter valid email").required("Required"),
     password: Yup.string().required("Required"),
   });
 
   const onSubmit = (values, props) => {
     setTimeout(() => {
+      console.log(values);
       props.resetForm();
       props.setSubmitting(false);
     }, 2000);
   };
 
   return (
-    <>
+    <Grid style={{ marginTop: 20 }}>
+      <Grid align="center">
+        <Avatar style={{ background: "rgb(238, 82, 83)" }}>
+          <LockOpenIcon />
+        </Avatar>
+        <h2 style={{ marginBottom: 0 }}>Sign In</h2>
+        <Typography variant="caption">
+          Please fill this form to log in
+        </Typography>
+      </Grid>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -50,14 +61,14 @@ const Login = () => {
           <Form>
             <Field
               as={TextField}
-              label="Username"
-              name="username"
-              placeholder="Enter username"
+              label="Email"
+              name="email"
+              placeholder="Enter email"
               helperText={
                 <ErrorMessage
                   component="div"
                   className={classes.errorMessage}
-                  name="username"
+                  name="email"
                 />
               }
               fullWidth
@@ -76,6 +87,7 @@ const Login = () => {
                 />
               }
               fullWidth
+              type="password"
               required
             />
             <Field
@@ -105,10 +117,13 @@ const Login = () => {
         <Link href="#">Forgot password ?</Link>
       </Typography>
       <Typography style={{ marginTop: "5px" }}>
-        Do you have an account ?<Link href="#">Sign Up</Link>
+        Do you have an account ?
+        <Link href="#" onClick={() => handleChange("event", 1)}>
+          Sign Up
+        </Link>
       </Typography>
-    </>
+    </Grid>
   );
 };
 
-export default Login;
+export default SignIn;
