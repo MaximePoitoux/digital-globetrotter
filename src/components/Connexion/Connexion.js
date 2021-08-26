@@ -1,4 +1,4 @@
-import ModalConnexion from "./Modal/Modal";
+import ModalConnexion from "./ModalConnexion/ModalConnexion";
 
 const Connexion = ({ openModal, handleCloseModal }) => {
   return (

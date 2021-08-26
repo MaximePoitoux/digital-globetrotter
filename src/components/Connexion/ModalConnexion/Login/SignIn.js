@@ -1,6 +1,6 @@
+import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
   Avatar,
@@ -30,7 +30,9 @@ const SignIn = ({ handleChange }) => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Please enter valid email").required("Required"),
-    password: Yup.string().required("Required"),
+    password: Yup.string()
+      .min(8, "Your password must be at least 8 characters in length")
+      .required("Required"),
   });
 
   const onSubmit = (values, props) => {
@@ -101,7 +103,7 @@ const SignIn = ({ handleChange }) => {
               style={{
                 background: "rgb(238, 82, 83)",
                 color: "white",
-                marginTop: "40px",
+                marginTop: 20,
               }}
               type="submit"
               variant="contained"
@@ -113,12 +115,19 @@ const SignIn = ({ handleChange }) => {
           </Form>
         )}
       </Formik>
-      <Typography style={{ marginTop: "40px" }}>
-        <Link href="#">Forgot password ?</Link>
+      <Typography style={{ marginTop: 40 }}>
+        <Link style={{ color: "rgb(118, 118, 118)" }} href="#">
+          Forgot password ?
+        </Link>
       </Typography>
-      <Typography style={{ marginTop: "5px" }}>
-        Do you have an account ?
-        <Link href="#" onClick={() => handleChange("event", 1)}>
+      <Typography style={{ marginTop: "5px", color: "rgb(118, 118, 118)" }}>
+        New to Globetrotter ?
+        <Link
+          style={{ color: "inherit" }}
+          href="#"
+          onClick={() => handleChange("event", 1)}
+        >
+          {" "}
           Sign Up
         </Link>
       </Typography>

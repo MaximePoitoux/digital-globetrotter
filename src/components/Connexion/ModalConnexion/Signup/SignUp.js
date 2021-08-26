@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -46,7 +45,7 @@ const SignUp = () => {
       .min(8, "Your password must be at least 8 characters in length")
       .required("Required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Password not matched")
+      .oneOf([Yup.ref("password")], "Password do not match")
       .required("Required"),
     termsAndConditions: Yup.string().oneOf(
       ["true"],
