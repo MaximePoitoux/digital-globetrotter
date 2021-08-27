@@ -4,6 +4,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+// OK
 
 const Profile = () => {
   const { currentUser, logout } = useAuth();
