@@ -5,7 +5,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import SignIn from "./Login/SignIn";
+import SignIn from "./SignIn/SignIn";
 import SignUp from "./Signup/SignUp";
 
 const useStyles = makeStyles((theme) => ({
@@ -84,10 +84,13 @@ const ModalConnexion = ({ openModal, handleCloseModal }) => {
               <Tab label="Sign Up" />
             </Tabs>
             <TabPanel value={value} index={0}>
-              <SignIn handleChange={handleChange} />
+              <SignIn
+                handleChange={handleChange}
+                handleCloseModal={handleCloseModal}
+              />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <SignUp />
+              <SignUp handleChange={handleChange} />
             </TabPanel>
           </div>
         </Fade>

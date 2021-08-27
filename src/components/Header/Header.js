@@ -12,7 +12,9 @@ import LazyLoad from "react-lazyload";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import PersonIcon from "@material-ui/icons/Person";
 import Connexion from "../Connexion/Connexion";
+import { useAuth } from "../../contexts/AuthContext";
 
 // https://medium.com/@BoltAssaults/autoplay-muted-html5-video-safari-ios-10-in-react-673ae50ba1f5
 
@@ -84,6 +86,7 @@ const Header = ({
 }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
+  const { currentUser } = useAuth();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -167,6 +170,21 @@ const Header = ({
             Favorites
           </NavLink>
         </MenuItem>
+        {currentUser && (
+          <MenuItem onClick={handleClose}>
+            <NavLink
+              className={classes.link}
+              to="/profile"
+              activeStyle={{
+                fontWeight: "bold",
+                color: "#eb4d4b",
+              }}
+            >
+              <PersonIcon style={{ marginRight: 6 }} />
+              Profile
+            </NavLink>
+          </MenuItem>
+        )}
       </Menu>
       <div className={classes.loginContainer}>
         <IconButton onClick={handleOpenModal}>

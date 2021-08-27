@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -15,7 +16,9 @@ import {
   FormLabel,
   FormHelperText,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 const useStyles = makeStyles(() => ({
   errorMessage: {
@@ -23,8 +26,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SignUp = () => {
+const SignUp = ({ handleChange }) => {
   const classes = useStyles();
+  const { signup } = useAuth();
+  const [error, setError] = useState("");
 
   const initialValues = {
     name: "",
@@ -53,19 +58,17 @@ const SignUp = () => {
     ),
   });
 
-  const onSubmit = (values, props) => {
-    setTimeout(() => {
-      console.log(values);
+  async function onSubmit(values, props) {
+    try {
+      setError("");
+      await signup(values.email, values.password);
       props.resetForm();
       props.setSubmitting(false);
-    }, 2000);
-  };
-
-  // const [gender, setGender] = useState("female");
-
-  // const handleChange = (event) => {
-  //   setGender(event.target.value);
-  // };
+      handleChange("event", 0);
+    } catch {
+      setError("The email address is already used");
+    }
+  }
 
   return (
     <Grid style={{ marginTop: 20 }}>
@@ -78,6 +81,11 @@ const SignUp = () => {
           Please fill this form to create an account
         </Typography>
       </Grid>
+      {error && (
+        <Alert style={{ margin: "10px 0px" }} severity="error">
+          {error}
+        </Alert>
+      )}
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}

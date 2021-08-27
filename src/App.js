@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Cities from "./features/cities";
 import Favorites from "./features/favorites";
+import Profile from "./features/profile";
 import apiCities from "services/api/api.cities";
 // import apiFirebase from "services/api/api.firebase";
 import {
@@ -10,6 +11,8 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import PrivateRoute from "./features/PrivateRoute";
 
 const App = () => {
   // https://www.robinwieruch.de/react-hooks-fetch-data => useEffect with Axios
@@ -319,69 +322,74 @@ const App = () => {
 
   return (
     <Router>
-      <Switch>
-        <Route
-          path="/cities"
-          render={(props) => {
-            return (
-              <Cities
-                {...props}
-                loaded={loaded}
-                cities={cities}
-                favorites={favorites}
-                addFavorite={addFavorite}
-                removeFavorite={removeFavorite}
-                removeCity={removeCity}
-                searchCity={searchCity}
-                setSearchCity={setSearchCity}
-                sortCitiesByScoreDescending={sortCitiesByScoreDescending}
-                sortCitiesByScoreAscending={sortCitiesByScoreAscending}
-                sortCitiesByCostOfLifeDescending={
-                  sortCitiesByCostOfLifeDescending
-                }
-                sortCitiesByHousingDescending={sortCitiesByHousingDescending}
-                sortCitiesByCommuteDescending={sortCitiesByCommuteDescending}
-                sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
-                sortCitiesByHealthcareDescending={
-                  sortCitiesByHealthcareDescending
-                }
-                sortCitiesByEducationDescending={
-                  sortCitiesByEducationDescending
-                }
-                sortCitiesByEnvironmentalQualityDescending={
-                  sortCitiesByEnvironmentalQualityDescending
-                }
-                sortCitiesByEconomyDescending={sortCitiesByEconomyDescending}
-                sortCitiesByBusinessFreedomDescending={
-                  sortCitiesByBusinessFreedomDescending
-                }
-                sortCitiesByCultureDescending={sortCitiesByCultureDescending}
-                sortCitiesByInternetAccessDescending={
-                  sortCitiesByInternetAccessDescending
-                }
-                sortCitiesByToleranceDescending={
-                  sortCitiesByToleranceDescending
-                }
-                sortCitiesByOutdoorsDescending={sortCitiesByOutdoorsDescending}
-              />
-            );
-          }}
-        />
-        <Route
-          path="/favorites"
-          render={(props) => {
-            return (
-              <Favorites
-                {...props}
-                loaded={loaded}
-                favorites={favorites}
-                removeFavorite={removeFavorite}
-              />
-            );
-          }}
-        />
-        <Redirect to="/cities" />
-      </Switch>
+      <AuthProvider>
+        <Switch>
+          <Route
+            path="/cities"
+            render={(props) => {
+              return (
+                <Cities
+                  {...props}
+                  loaded={loaded}
+                  cities={cities}
+                  favorites={favorites}
+                  addFavorite={addFavorite}
+                  removeFavorite={removeFavorite}
+                  removeCity={removeCity}
+                  searchCity={searchCity}
+                  setSearchCity={setSearchCity}
+                  sortCitiesByScoreDescending={sortCitiesByScoreDescending}
+                  sortCitiesByScoreAscending={sortCitiesByScoreAscending}
+                  sortCitiesByCostOfLifeDescending={
+                    sortCitiesByCostOfLifeDescending
+                  }
+                  sortCitiesByHousingDescending={sortCitiesByHousingDescending}
+                  sortCitiesByCommuteDescending={sortCitiesByCommuteDescending}
+                  sortCitiesBySafetyDescending={sortCitiesBySafetyDescending}
+                  sortCitiesByHealthcareDescending={
+                    sortCitiesByHealthcareDescending
+                  }
+                  sortCitiesByEducationDescending={
+                    sortCitiesByEducationDescending
+                  }
+                  sortCitiesByEnvironmentalQualityDescending={
+                    sortCitiesByEnvironmentalQualityDescending
+                  }
+                  sortCitiesByEconomyDescending={sortCitiesByEconomyDescending}
+                  sortCitiesByBusinessFreedomDescending={
+                    sortCitiesByBusinessFreedomDescending
+                  }
+                  sortCitiesByCultureDescending={sortCitiesByCultureDescending}
+                  sortCitiesByInternetAccessDescending={
+                    sortCitiesByInternetAccessDescending
+                  }
+                  sortCitiesByToleranceDescending={
+                    sortCitiesByToleranceDescending
+                  }
+                  sortCitiesByOutdoorsDescending={
+                    sortCitiesByOutdoorsDescending
+                  }
+                />
+              );
+            }}
+          />
+          <Route
+            path="/favorites"
+            render={(props) => {
+              return (
+                <Favorites
+                  {...props}
+                  loaded={loaded}
+                  favorites={favorites}
+                  removeFavorite={removeFavorite}
+                />
+              );
+            }}
+          />
+          <PrivateRoute path="/profile" component={Profile} />
+          <Redirect to="/cities" />
+        </Switch>
+      </AuthProvider>
     </Router>
   );
 };

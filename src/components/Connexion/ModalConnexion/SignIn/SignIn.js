@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -11,7 +13,9 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 const useStyles = makeStyles(() => ({
   errorMessage: {
@@ -19,14 +23,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SignIn = ({ handleChange }) => {
+const SignIn = ({ handleChange, handleCloseModal }) => {
   const classes = useStyles();
+  const [error, setError] = useState("");
+
+  const history = useHistory();
 
   const initialValues = {
     email: "",
     password: "",
     remember: false,
   };
+
+  const { signin } = useAuth();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Please enter valid email").required("Required"),
@@ -35,13 +44,18 @@ const SignIn = ({ handleChange }) => {
       .required("Required"),
   });
 
-  const onSubmit = (values, props) => {
-    setTimeout(() => {
-      console.log(values);
+  async function onSubmit(values, props) {
+    try {
+      setError("");
+      await signin(values.email, values.password);
       props.resetForm();
       props.setSubmitting(false);
-    }, 2000);
-  };
+      handleCloseModal();
+      history.push("/profile");
+    } catch {
+      setError("Your email or password are not correct");
+    }
+  }
 
   return (
     <Grid style={{ marginTop: 20 }}>
@@ -54,6 +68,11 @@ const SignIn = ({ handleChange }) => {
           Please fill this form to log in
         </Typography>
       </Grid>
+      {error && (
+        <Alert style={{ margin: "10px 0px" }} severity="error">
+          {error}
+        </Alert>
+      )}
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
