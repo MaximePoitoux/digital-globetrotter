@@ -16,6 +16,7 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { useAuth } from "../../../../contexts/AuthContext";
+import ForgotPassword from "../ForgotPassword/ForgotPassword";
 
 const useStyles = makeStyles(() => ({
   errorMessage: {
@@ -26,6 +27,15 @@ const useStyles = makeStyles(() => ({
 const SignIn = ({ handleChange, handleCloseModal }) => {
   const classes = useStyles();
   const [error, setError] = useState("");
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
   const history = useHistory();
 
@@ -135,10 +145,18 @@ const SignIn = ({ handleChange, handleCloseModal }) => {
         )}
       </Formik>
       <Typography style={{ marginTop: 40 }}>
-        <Link style={{ color: "rgb(118, 118, 118)" }} href="#">
+        <Link
+          style={{ color: "rgb(118, 118, 118)" }}
+          href="#"
+          onClick={handleClickOpenDialog}
+        >
           Forgot password ?
         </Link>
       </Typography>
+      <ForgotPassword
+        openDialog={openDialog}
+        handleCloseDialog={handleCloseDialog}
+      />
       <Typography style={{ marginTop: "5px", color: "rgb(118, 118, 118)" }}>
         New to Globetrotter ?
         <Link
